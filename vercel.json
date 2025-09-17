@@ -1,0 +1,13 @@
+{
+  "build": {
+    "env": {
+      "GENERATE_SOURCEMAP": "false",
+      "DISABLE_ESLINT_PLUGIN": "true"
+    }
+  },
+  "functions": {
+    "src/pages/api/**/*.js": {
+      "runtime": "@vercel/node"
+    }
+  }
+}
