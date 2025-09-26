@@ -326,27 +326,27 @@ const serviceData = {
     ]
   },
   achat: {
-    title: "Acquisition Immobilière Stratégique",
-    subtitle: "Transformez vos ambitions en patrimoine solide avec notre expertise bicontinentale",
+    title: "Achat & Vente Immobilière Premium",
+    subtitle: "Votre partenaire de confiance pour tous vos projets d'acquisition et de cession immobilière",
     icon: "🔑",
     image: immobilier2,
     color: "#10B981",
-    description: "L'acquisition immobilière représente bien plus qu'un simple achat : c'est la construction de votre patrimoine et la concrétisation de vos rêves. Notre approche stratégique combine analyse financière rigoureuse, connaissance approfondie des marchés africains et antillais, et négociation d'expert. Que vous visiez un investissement locatif rentable à Abidjan, une résidence secondaire à Fort-de-France, ou votre future maison familiale, nous maximisons la valeur de chaque euro investi tout en sécurisant juridiquement votre acquisition.",
+    description: "Que vous souhaitiez acquérir votre première résidence, investir dans l'immobilier locatif, ou vendre votre bien dans les meilleures conditions, BA Immobilier vous accompagne à chaque étape. Notre expertise bicontinentale nous permet de vous proposer les meilleures opportunités entre l'Afrique et les Antilles, tout en sécurisant vos transactions. De l'évaluation à la signature, nous maximisons la valeur de vos projets immobiliers avec une approche personnalisée et des outils digitaux de pointe.",
     features: [
-      "Études de marché exclusives avec données comparatives Afrique/Antilles/France",
-      "Analyse ROI détaillée et projections de rentabilité personnalisées",
-      "Due diligence juridique approfondie par nos partenaires notaires locaux",
-      "Négociation stratégique pour optimiser prix d'achat et conditions",
-      "Accompagnement financement : banques partenaires et solutions crédit adaptées",
-      "Inspection technique professionnelle et évaluation des travaux nécessaires",
-      "Assistance fiscale et optimisation selon votre résidence fiscale",
-      "Suivi post-acquisition : gestion locative, plus-value, stratégie patrimoniale"
+      "ACHAT : Sourcing exclusif de biens premium et analyse de rentabilité personnalisée",
+      "ACHAT : Négociation experte et accompagnement financement avec banques partenaires",
+      "ACHAT : Due diligence complète et inspection technique par nos experts",
+      "VENTE : Évaluation professionnelle et stratégie de valorisation sur-mesure",
+      "VENTE : Marketing digital 360° avec photographie professionnelle et visites virtuelles",
+      "VENTE : Base d'acquéreurs qualifiés et négociation jusqu'à la signature",
+      "Assistance juridique et fiscale complète pour acheteurs et vendeurs",
+      "Suivi post-transaction : gestion locative, conseils patrimoniaux et fiscaux"
     ],
     process: [
-      { title: "Diagnostic Patrimonial", description: "Analyse complète de votre situation financière et objectifs d'investissement" },
-      { title: "Sourcing Ciblé", description: "Identification d'opportunités exclusives correspondant à vos critères" },
-      { title: "Due Diligence", description: "Évaluation technique, juridique et financière approfondie" },
-      { title: "Acquisition Sécurisée", description: "Négociation finale, financement et transfert de propriété" }
+      { title: "Analyse de Projet", description: "Évaluation de vos besoins d'achat ou objectifs de vente avec étude de marché" },
+      { title: "Recherche & Valorisation", description: "Sourcing de biens premium (achat) ou stratégie de mise en marché (vente)" },
+      { title: "Négociation Expert", description: "Optimisation des conditions d'achat ou maximisation du prix de vente" },
+      { title: "Finalisation Sécurisée", description: "Accompagnement juridique et administratif jusqu'à la signature" }
     ]
   },
   vente: {
@@ -374,27 +374,27 @@ const serviceData = {
     ]
   },
   renovation: {
-    title: "Rénovation et Transformation Premium",
-    subtitle: "Révélez le potentiel caché de votre bien avec notre expertise architecturale",
+    title: "Rénovation & Construction Haut de Gamme",
+    subtitle: "De la rénovation complète à la construction neuve, concrétisons ensemble vos projets immobiliers",
     icon: "🔨",
     image: immobilier4,
     color: "#EF4444",
-    description: "Chaque bien possède un potentiel unique qui ne demande qu'à être révélé. Notre service de rénovation premium transforme votre vision en réalité, en alliant expertise technique, créativité architecturale et savoir-faire artisanal local. Que vous souhaitiez moderniser une villa coloniale en Guadeloupe, réaménager un appartement à Dakar, ou créer un espace contemporain en conservant l'âme authentique du lieu, nous orchestrons votre projet de A à Z. Notre approche respecte les codes architecturaux locaux tout en intégrant les standards de confort modernes.",
+    description: "Transformer un bien existant ou créer votre résidence de rêve nécessite une expertise technique et une vision créative. BA Immobilier vous accompagne dans tous vos projets de rénovation et de construction, en alliant savoir-faire artisanal local et standards internationaux. Que vous souhaitiez rénover une villa coloniale, construire une résidence moderne, ou transformer un bien en investissement locatif premium, nous orchestrons chaque étape avec l'exigence du sur-mesure et le respect des traditions architecturales locales.",
     features: [
-      "Étude architecturale complète avec respect des codes patrimoniaux locaux",
-      "Design d'intérieur sur-mesure alliant modernité et authenticité culturelle",
-      "Sélection rigoureuse d'artisans locaux qualifiés et matériaux nobles",
-      "Gestion de projet intégrée avec planning détaillé et suivi en temps réel",
-      "Intégration de solutions écologiques et énergétiques adaptées au climat",
-      "Coordination administrative : permis, assurances, normes de sécurité",
-      "Contrôle qualité permanent avec points d'étapes validés ensemble",
-      "Garantie décennale et service après-vente personnalisé"
+      "RÉNOVATION : Étude technique complète et conception architecturale respectueuse du patrimoine",
+      "RÉNOVATION : Réaménagement intérieur, modernisation et mise aux normes",
+      "RÉNOVATION : Sélection d'artisans locaux qualifiés et matériaux nobles durables",
+      "CONSTRUCTION : Recherche foncière, conception sur-mesure et maîtrise d'œuvre complète",
+      "CONSTRUCTION : Intégration domotique et solutions énergétiques innovantes",
+      "CONSTRUCTION : Suivi de chantier quotidien avec reporting temps réel",
+      "Coordination administrative complète : permis, assurances, réceptions",
+      "Garanties constructeur et service après-vente personnalisé"
     ],
     process: [
-      { title: "Diagnostic Expert", description: "Analyse structurelle, potentiel d'aménagement et contraintes techniques" },
-      { title: "Conception Creative", description: "Plans architecturaux, design d'intérieur et sélection matériaux premium" },
-      { title: "Réalisation Maîtrisée", description: "Coordination chantier, suivi qualité et respect des délais" },
-      { title: "Livraison Excellence", description: "Réception, formation aux équipements et service après-vente" }
+      { title: "Étude de Faisabilité", description: "Diagnostic technique (rénovation) ou recherche foncière (construction)" },
+      { title: "Conception Sur-Mesure", description: "Plans architecturaux, design et sélection matériaux premium" },
+      { title: "Réalisation Maîtrisée", description: "Coordination chantier, contrôle qualité et respect planning" },
+      { title: "Livraison Clé en Main", description: "Réception définitive, formation équipements et garanties" }
     ]
   },
   construction: {

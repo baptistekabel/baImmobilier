@@ -182,6 +182,9 @@ const MapStatus = ({ status }) => {
 const ApproximateLocationMap = ({ location, className, style }) => {
   const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
+  console.log('Google Maps API Key présente:', !!apiKey);
+  console.log('Environnement:', process.env.NODE_ENV);
+
   if (!apiKey) {
     return (
       <MapContainer className={className} style={style}>

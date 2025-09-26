@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const fadeInUp = keyframes`
   from {
@@ -510,6 +511,7 @@ const ScrollArrow = styled.div`
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [particles, setParticles] = useState([]);
 
   useEffect(() => {
@@ -525,18 +527,15 @@ const HeroSection = () => {
     setParticles(particleArray);
   }, []);
 
-  const scrollToServices = () => {
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToFeaturedProperties = () => {
+    const featuredSection = document.getElementById('featured-properties');
+    if (featuredSection) {
+      featuredSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navigateToContact = () => {
+    navigate('/contact');
   };
 
   // Animation variants pour les titres
@@ -884,7 +883,7 @@ const HeroSection = () => {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <CTAButton className="primary" onClick={scrollToServices}>
+            <CTAButton className="primary" onClick={scrollToFeaturedProperties}>
               {t('hero.cta.discover')}
             </CTAButton>
           </motion.div>
@@ -893,7 +892,7 @@ const HeroSection = () => {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <CTAButton className="secondary" onClick={scrollToContact}>
+            <CTAButton className="secondary" onClick={navigateToContact}>
               {t('hero.cta.contact')}
             </CTAButton>
           </motion.div>

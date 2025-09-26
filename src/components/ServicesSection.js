@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { FaHome, FaKey, FaBuilding, FaTools, FaHardHat, FaArrowRight, FaMapMarkedAlt, FaHandshake, FaChartLine } from 'react-icons/fa';
+import { FaHome, FaKey, FaBuilding, FaTools, FaHardHat, FaArrowRight, FaMapMarkedAlt } from 'react-icons/fa';
 import { motion, useInView } from 'framer-motion';
 import immobilier1 from '../assets/images/immobilier1.jpeg';
 import immobilier2 from '../assets/images/immobilier2.jpg';
@@ -366,31 +366,17 @@ const ServicesSection = () => {
     },
     {
       icon: <FaKey />,
-      titleKey: 'services.buy.title',
-      descKey: 'services.buy.desc',
+      titleKey: 'services.buyAndSell.title',
+      descKey: 'services.buyAndSell.desc',
       slug: 'achat',
       image: immobilier2
     },
     {
-      icon: <FaBuilding />,
-      titleKey: 'services.sell.title',
-      descKey: 'services.sell.desc',
-      slug: 'vente',
-      image: immobilier3
-    },
-    {
       icon: <FaTools />,
-      titleKey: 'services.renovation.title',
-      descKey: 'services.renovation.desc',
+      titleKey: 'services.renovationAndConstruction.title',
+      descKey: 'services.renovationAndConstruction.desc',
       slug: 'renovation',
       image: immobilier4
-    },
-    {
-      icon: <FaHardHat />,
-      titleKey: 'services.construction.title',
-      descKey: 'services.construction.desc',
-      slug: 'construction',
-      image: immobilier1
     },
     {
       icon: <FaMapMarkedAlt />,

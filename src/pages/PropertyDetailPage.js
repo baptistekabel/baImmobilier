@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaHome, FaDoorOpen, FaBed, FaBath, FaMapMarkerAlt, FaPhone, FaEnvelope, FaChevronLeft, FaChevronRight, FaPlay } from 'react-icons/fa';
+import { FaArrowLeft, FaHome, FaDoorOpen, FaBed, FaBath, FaMapMarkerAlt, FaPhone, FaEnvelope, FaChevronLeft, FaChevronRight, FaPlay, FaSwimmingPool, FaSeedling, FaCar, FaBuilding, FaSnowflake, FaFire, FaShieldAlt, FaArrowUp, FaWater, FaCheck } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ApproximateLocationMap from '../components/ApproximateLocationMap';
 import { propertiesService } from '../services/PropertiesService';
@@ -636,6 +636,42 @@ const PropertyDetailPage = () => {
                     </FeatureItem>
                   ))}
                 </FeaturesList>
+
+                {property.features && Object.entries(property.features).some(([key, value]) => value) && (
+                  <>
+                    <SectionTitle style={{ marginTop: '2rem' }}>Équipements</SectionTitle>
+                    <FeaturesList>
+                      {Object.entries(property.features).filter(([key, value]) => value).map(([key, value]) => {
+                        const featureConfig = {
+                          piscine: { icon: <FaSwimmingPool />, label: 'Piscine' },
+                          jardin: { icon: <FaSeedling />, label: 'Jardin' },
+                          garage: { icon: <FaCar />, label: 'Garage' },
+                          terrasse: { icon: <FaBuilding />, label: 'Terrasse' },
+                          balcon: { icon: <FaBuilding />, label: 'Balcon' },
+                          climatisation: { icon: <FaSnowflake />, label: 'Climatisation' },
+                          chauffage: { icon: <FaFire />, label: 'Chauffage' },
+                          cheminee: { icon: <FaFire />, label: 'Cheminée' },
+                          securite: { icon: <FaShieldAlt />, label: 'Sécurité' },
+                          ascenseur: { icon: <FaArrowUp />, label: 'Ascenseur' },
+                          vueMer: { icon: <FaWater />, label: 'Vue mer' }
+                        };
+
+                        const config = featureConfig[key];
+                        if (!config) return null;
+
+                        return (
+                          <FeatureItem key={key}>
+                            <FeatureIcon>{config.icon}</FeatureIcon>
+                            <FeatureText>
+                              <FeatureLabel>Équipement</FeatureLabel>
+                              <FeatureValue>{config.label}</FeatureValue>
+                            </FeatureText>
+                          </FeatureItem>
+                        );
+                      })}
+                    </FeaturesList>
+                  </>
+                )}
               </DetailsSection>
             </LeftColumn>
 

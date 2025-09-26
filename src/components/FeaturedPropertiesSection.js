@@ -169,7 +169,7 @@ const FeaturedPropertiesSection = () => {
 
   if (loading) {
     return (
-      <Section>
+      <Section id="featured-properties">
         <Container>
           <SectionHeader>
             <SectionTitle>Nos Biens en Vedette</SectionTitle>
@@ -187,7 +187,7 @@ const FeaturedPropertiesSection = () => {
 
   if (properties.length === 0) {
     return (
-      <Section>
+      <Section id="featured-properties">
         <Container>
           <SectionHeader>
             <SectionTitle>Nos Biens en Vedette</SectionTitle>
@@ -204,7 +204,7 @@ const FeaturedPropertiesSection = () => {
   }
 
   return (
-    <Section>
+    <Section id="featured-properties">
       <Container>
         <SectionHeader>
           <SectionTitle>Nos Biens en Vedette</SectionTitle>

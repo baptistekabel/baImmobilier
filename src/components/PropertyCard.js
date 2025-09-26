@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaImage, FaVideo, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaImage, FaVideo, FaChevronLeft, FaChevronRight, FaSwimmingPool, FaCar, FaWater } from 'react-icons/fa';
 import ApproximateLocationMap from './ApproximateLocationMap';
 import { formatAddressForCard } from '../utils/addressUtils';
 
@@ -248,6 +248,25 @@ const RegionBadge = styled.span`
   margin-left: 0.5rem;
 `;
 
+const EquipmentBadges = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+`;
+
+const EquipmentBadge = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: ${props => props.theme.colors.lightGray};
+  color: ${props => props.theme.colors.primary};
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+`;
+
 const PropertyCard = ({ property, onClick }) => {
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -445,6 +464,28 @@ const PropertyCard = ({ property, onClick }) => {
             <FeatureLabel>SDB</FeatureLabel>
           </Feature>
         </Features>
+
+        {property.features && Object.entries(property.features).some(([key, value]) => value) && (
+          <EquipmentBadges>
+            {Object.entries(property.features).filter(([key, value]) => value).slice(0, 3).map(([key, value]) => {
+              const equipmentConfig = {
+                piscine: { icon: <FaSwimmingPool />, label: 'Piscine' },
+                garage: { icon: <FaCar />, label: 'Garage' },
+                vueMer: { icon: <FaWater />, label: 'Vue mer' }
+              };
+
+              const config = equipmentConfig[key];
+              if (!config) return null;
+
+              return (
+                <EquipmentBadge key={key}>
+                  {config.icon}
+                  {config.label}
+                </EquipmentBadge>
+              );
+            })}
+          </EquipmentBadges>
+        )}
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <TypeBadge>{property.type}</TypeBadge>
