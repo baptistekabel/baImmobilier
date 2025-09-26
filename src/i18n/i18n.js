@@ -95,8 +95,8 @@ const resources = {
       "about.promise.vision": "Vous ouvrir la porte à un immobilier panafricain durable et rentable",
       "about.promise.conclusion": "Nous commençons au Sénégal, mais avec BA Immobilier, vous avez un partenaire pour investir demain dans toute l'Afrique.",
 
-      "about.video.title": "Ma vision personnalisée",
-      "about.video.description": "Découvrez ma vision unique de l'investissement immobilier entre l'Afrique et les Antilles. Une approche personnalisée qui transforme vos projets en succès garantis.",
+      "about.video.title": "Mon parcours en quelques mots",
+      "about.video.description": "Découvrez comment mon expérience chez les leaders français de l'immobilier et ma double culture m'ont mené à créer BA Immobilier. Un parcours professionnel au service de votre réussite.",
 
       // Newsletter
       "newsletter.title": "Restez informé",
@@ -225,8 +225,8 @@ const resources = {
       "about.promise.vision": "Ubbi la bunt ngir kër panafricain bu yeesal ak bu am bénef",
       "about.promise.conclusion": "Daal nanu ci Senegal, waaye ak BA Immobilier, am nga benn mbokk ngir lekk ci Afrig lépp suba.",
 
-      "about.video.title": "Sama gees bu njariñ",
-      "about.video.description": "Gis sama gees bu nekk kenn ci lekk kër ci Afrig ak Antiy. Benn mbedd bu njariñ mu soppiku sa projet ci réussite yu sûr.",
+      "about.video.title": "Sama mbedd ci wàllu kenn",
+      "about.video.description": "Gis ni sama liggéey ci boole yu mag yu Fereñs ci kër ak sama njariñ culture ñéppi ma défar BA Immobilier. Benn mbedd bu liggéey ci sa réussite.",
 
       // Newsletter
       "newsletter.title": "Am-am xibaar",
