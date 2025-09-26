@@ -435,7 +435,7 @@ const PropertyCard = ({ property, onClick }) => {
         <Location>
           <FaMapMarkerAlt /> {formatAddressForCard(property.location)}
           <RegionBadge>
-            {property.location.region === 'Africa' ? 'Afrique' : 'Antilles'}
+            {property.location.country || (property.location.region === 'Africa' ? 'Afrique' : 'Antilles')}
           </RegionBadge>
         </Location>
 

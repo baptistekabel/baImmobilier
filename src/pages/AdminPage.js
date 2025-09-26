@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FaPlus, FaEdit, FaTrash, FaEye, FaSave, FaTimes, FaHome, FaChartBar } from 'react-icons/fa';
 import ImageUploader from '../components/ImageUploader';
+import AddressAutocomplete from '../components/AddressAutocomplete';
 import { adminService } from '../services/AdminService';
 
 const fadeIn = keyframes`
@@ -357,7 +358,90 @@ const LoadingSpinner = styled.div`
   }
 `;
 
+const AuthContainer = styled.div`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+`;
+
+const AuthCard = styled.div`
+  background: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 2rem;
+
+  h2 {
+    color: ${props => props.theme.colors.primary};
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+`;
+
+const AuthForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const AuthInput = styled.input`
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.theme.colors.primary};
+  }
+`;
+
+const AuthButton = styled.button`
+  background: linear-gradient(135deg, ${props => props.theme.colors.primary}, #1a2b5e);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+const AuthError = styled.div`
+  background: #ffebee;
+  color: #c62828;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border-left: 4px solid #c62828;
+`;
+
 const AdminPage = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authCode, setAuthCode] = useState('');
+  const [authError, setAuthError] = useState('');
   const [properties, setProperties] = useState([]);
   const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(true);
@@ -374,8 +458,10 @@ const AdminPage = () => {
       address: '',
       city: '',
       country: 'Sénégal',
-      region: 'Africa'
+      region: 'Africa',
+      coordinates: null
     },
+    rooms: '',
     bedrooms: '',
     bathrooms: '',
     features: {
@@ -432,6 +518,7 @@ const AdminPage = () => {
         ...property,
         price: property.price.toString(),
         surface: property.surface.toString(),
+        rooms: property.rooms?.toString() || '',
         bedrooms: property.bedrooms?.toString() || '',
         bathrooms: property.bathrooms?.toString() || '',
         features: property.features || {
@@ -462,8 +549,10 @@ const AdminPage = () => {
           address: '',
           city: '',
           country: 'Sénégal',
-          region: 'Africa'
+          region: 'Africa',
+          coordinates: null
         },
+        rooms: '',
         bedrooms: '',
         bathrooms: '',
         features: {
@@ -527,6 +616,53 @@ const AdminPage = () => {
     }));
   };
 
+  const handleAddressChange = (e, details) => {
+    const { name, value } = e.target;
+
+    if (details) {
+      // Autocomplétion avec détails complets
+      setFormData(prev => ({
+        ...prev,
+        location: {
+          ...prev.location,
+          address: details.fullAddress,
+          city: details.city || prev.location.city,
+          country: details.country || prev.location.country,
+          region: details.region || prev.location.region,
+          coordinates: details.coordinates || prev.location.coordinates
+        }
+      }));
+    } else {
+      // Saisie manuelle simple
+      setFormData(prev => ({
+        ...prev,
+        location: {
+          ...prev.location,
+          address: value
+        }
+      }));
+    }
+  };
+
+  const handleAuth = (e) => {
+    e.preventDefault();
+    if (authCode.toUpperCase() === 'IDRISS') {
+      setIsAuthenticated(true);
+      setAuthError('');
+      localStorage.setItem('adminAuth', 'true');
+    } else {
+      setAuthError('Code incorrect');
+      setAuthCode('');
+    }
+  };
+
+  useEffect(() => {
+    const savedAuth = localStorage.getItem('adminAuth');
+    if (savedAuth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -544,21 +680,36 @@ const AdminPage = () => {
 
     try {
       // Préparer les images dans le bon format
-      const validImages = formData.images.filter(img => img.uploaded && img.url);
-      const imageUrls = validImages.map(img => img.url); // Format simple URL pour compatibilité
+      const validImages = formData.images.filter(img => {
+        // Garder les images existantes (format string) et les nouvelles images uploadées
+        return typeof img === 'string' || (img.uploaded && img.url);
+      });
+
+      const imageUrls = validImages.map(img => {
+        // Si c'est déjà une URL (string), la garder, sinon extraire l'URL de l'objet
+        return typeof img === 'string' ? img : img.url;
+      });
 
       const propertyData = {
         ...formData,
         price: parseFloat(formData.price),
         surface: parseFloat(formData.surface),
+        rooms: formData.rooms ? parseInt(formData.rooms) : undefined,
         bedrooms: formData.bedrooms ? parseInt(formData.bedrooms) : undefined,
         bathrooms: formData.bathrooms ? parseInt(formData.bathrooms) : undefined,
         images: imageUrls, // Sauvegarder en tant qu'array d'URLs
-        imageDetails: validImages.map(img => ({ // Garder les détails séparément si nécessaire
-          url: img.url,
-          path: img.path,
-          name: img.name
-        }))
+        imageDetails: validImages.map(img => {
+          // Garder les détails seulement pour les nouvelles images uploadées
+          if (typeof img === 'string') {
+            return { url: img }; // Images existantes n'ont que l'URL
+          } else {
+            return { // Nouvelles images ont tous les détails
+              url: img.url,
+              path: img.path,
+              name: img.name
+            };
+          }
+        })
       };
 
       console.log('Saving property with images:', {
@@ -626,8 +777,10 @@ const AdminPage = () => {
           address: '123 Rue Test',
           city: 'Dakar',
           country: 'Sénégal',
-          region: 'Africa'
+          region: 'Africa',
+          coordinates: { lat: 14.7167, lng: -17.4677 } // Coordonnées de Dakar
         },
+        rooms: 5,
         bedrooms: 3,
         bathrooms: 2,
         images: [
@@ -660,6 +813,31 @@ const AdminPage = () => {
           <div className="spinner">⭐</div>
         </LoadingSpinner>
       </AdminContainer>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <AuthContainer>
+        <AuthCard>
+          <h2>🔐 Accès Admin</h2>
+          <p>Veuillez entrer le code d'accès pour accéder à l'espace administrateur</p>
+          <AuthForm onSubmit={handleAuth}>
+            <AuthInput
+              type="text"
+              placeholder="Code d'accès"
+              value={authCode}
+              onChange={(e) => setAuthCode(e.target.value)}
+              maxLength={6}
+              required
+            />
+            <AuthButton type="submit">
+              Accéder
+            </AuthButton>
+            {authError && <AuthError>{authError}</AuthError>}
+          </AuthForm>
+        </AuthCard>
+      </AuthContainer>
     );
   }
 
@@ -868,6 +1046,18 @@ const AdminPage = () => {
 
               <div className="form-row">
                 <div className="form-group">
+                  <label>Nombre de pièces</label>
+                  <input
+                    type="number"
+                    name="rooms"
+                    value={formData.rooms}
+                    onChange={handleInputChange}
+                    min="1"
+                    max="20"
+                  />
+                </div>
+
+                <div className="form-group">
                   <label>Chambres</label>
                   <input
                     type="number"
@@ -927,11 +1117,11 @@ const AdminPage = () => {
 
               <div className="form-group">
                 <label>Adresse *</label>
-                <input
-                  type="text"
-                  name="location.address"
+                <AddressAutocomplete
                   value={formData.location.address}
-                  onChange={handleInputChange}
+                  onChange={handleAddressChange}
+                  placeholder="Tapez votre adresse..."
+                  name="location.address"
                   required
                 />
               </div>
@@ -952,8 +1142,12 @@ const AdminPage = () => {
                   <label>Pays *</label>
                   <select name="location.country" value={formData.location.country} onChange={handleInputChange}>
                     <option value="Sénégal">Sénégal</option>
+                    <option value="France">France</option>
                     <option value="Guadeloupe">Guadeloupe</option>
                     <option value="Martinique">Martinique</option>
+                    <option value="Guyane française">Guyane française</option>
+                    <option value="La Réunion">La Réunion</option>
+                    <option value="Mayotte">Mayotte</option>
                     <option value="Mali">Mali</option>
                     <option value="Burkina Faso">Burkina Faso</option>
                   </select>

@@ -68,11 +68,18 @@ const GoogleMapComponent = ({ location }) => {
 
   useEffect(() => {
     if (mapRef.current && !map) {
-      // Coordonnées approximatives basées sur la région et la ville
+      // Utiliser les vraies coordonnées si disponibles, sinon coordonnées approximatives
       const getCoordinates = () => {
-        const { country, region } = location;
+        const { country, region, coordinates } = location;
 
-        // Coordonnées approximatives par défaut pour les régions
+        // Si des coordonnées précises sont disponibles, les utiliser
+        if (coordinates && coordinates.lat && coordinates.lng) {
+          console.log('Using precise coordinates:', coordinates);
+          return { lat: coordinates.lat, lng: coordinates.lng };
+        }
+
+        // Sinon, utiliser les coordonnées approximatives par défaut
+        console.log('Using default coordinates for:', country, region);
         if (region === 'Africa') {
           // Coordonnées pour l'Afrique (exemple: Maroc/Sénégal)
           if (country?.toLowerCase().includes('maroc')) {
