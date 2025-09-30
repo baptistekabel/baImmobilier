@@ -172,7 +172,7 @@ const FeaturedPropertiesSection = () => {
       <Section id="featured-properties">
         <Container>
           <SectionHeader>
-            <SectionTitle>Nos Biens en Vedette</SectionTitle>
+            <SectionTitle>Nos biens en vente</SectionTitle>
             <SectionSubtitle>
               Découvrez une sélection de nos plus beaux biens immobiliers
             </SectionSubtitle>
@@ -190,7 +190,7 @@ const FeaturedPropertiesSection = () => {
       <Section id="featured-properties">
         <Container>
           <SectionHeader>
-            <SectionTitle>Nos Biens en Vedette</SectionTitle>
+            <SectionTitle>Nos biens en vente</SectionTitle>
             <SectionSubtitle>
               Nos biens exceptionnels seront bientôt disponibles
             </SectionSubtitle>
@@ -207,7 +207,7 @@ const FeaturedPropertiesSection = () => {
     <Section id="featured-properties">
       <Container>
         <SectionHeader>
-          <SectionTitle>Nos Biens en Vedette</SectionTitle>
+          <SectionTitle>Nos biens en vente</SectionTitle>
           <SectionSubtitle>
             Découvrez une sélection de nos plus beaux biens immobiliers entre l'Afrique et les Antilles
           </SectionSubtitle>

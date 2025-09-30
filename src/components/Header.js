@@ -182,6 +182,9 @@ const Header = () => {
           <NavLink to="/properties" onClick={() => setIsMenuOpen(false)}>
             {t('nav.properties')}
           </NavLink>
+          <NavLink to="/vendre" onClick={() => setIsMenuOpen(false)}>
+            {t('nav.sell')}
+          </NavLink>
           <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
             {t('nav.contact')}
           </NavLink>

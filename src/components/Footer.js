@@ -188,7 +188,7 @@ const Footer = () => {
             <FooterTitle>{t('footer.contact.title')}</FooterTitle>
             <ContactInfo>
               <ContactIcon><FaPhone /></ContactIcon>
-              <span>+33 1 23 45 67 89</span>
+              <span>06 62 36 82 25</span>
             </ContactInfo>
             <ContactInfo>
               <ContactIcon><FaEnvelope /></ContactIcon>

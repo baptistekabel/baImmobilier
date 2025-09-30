@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FaPlus, FaEdit, FaTrash, FaEye, FaSave, FaTimes, FaHome, FaChartBar } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaEye, FaSave, FaTimes, FaHome, FaChartBar, FaDownload, FaEnvelope } from 'react-icons/fa';
 import ImageUploader from '../components/ImageUploader';
 import AddressAutocomplete from '../components/AddressAutocomplete';
 import { adminService } from '../services/AdminService';
+import downloadService from '../services/DownloadService';
+import sellService from '../services/SellService';
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(20px); }
@@ -438,6 +440,102 @@ const AuthError = styled.div`
   border-left: 4px solid #c62828;
 `;
 
+const DownloadsSection = styled.div`
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: ${fadeIn} 0.6s ease-out;
+`;
+
+const DownloadsHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  h3 {
+    color: ${props => props.theme.colors.primary};
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+`;
+
+const DownloadsTable = styled.div`
+  overflow-x: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+`;
+
+const TableHeader = styled.div`
+  background: ${props => props.theme.colors.lightGray};
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 100px;
+  gap: 1rem;
+  padding: 1rem;
+  font-weight: 600;
+  color: ${props => props.theme.colors.primary};
+  border-bottom: 1px solid #e0e0e0;
+`;
+
+const TableRow = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 100px;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+
+  &:hover {
+    background: #f8f9fa;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+const EmailCell = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: ${props => props.theme.colors.primary};
+  font-weight: 500;
+`;
+
+const EmptyDownloads = styled.div`
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+
+  .icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+  }
+`;
+
+const ViewAllButton = styled.button`
+  background: ${props => props.theme.colors.gold};
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #e6a000;
+    transform: translateY(-2px);
+  }
+`;
+
 const AdminPage = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authCode, setAuthCode] = useState('');
@@ -445,6 +543,10 @@ const AdminPage = () => {
   const [properties, setProperties] = useState([]);
   const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(true);
+  const [downloads, setDownloads] = useState([]);
+  const [downloadStats, setDownloadStats] = useState({});
+  const [sellSubmissions, setSellSubmissions] = useState([]);
+  const [sellStats, setSellStats] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [editingProperty, setEditingProperty] = useState(null);
   const [formData, setFormData] = useState({
@@ -492,8 +594,19 @@ const AdminPage = () => {
         adminService.getAdminStatistics()
       ]);
 
+      // Charger les données de téléchargement
+      const downloadsData = downloadService.getAllDownloads();
+      const downloadStatsData = downloadService.getDownloadStats();
+
+      // Charger les données de soumissions de vente
+      const sellSubmissionsData = sellService.getAllSubmissions();
+      const sellStatsData = sellService.getSubmissionStats();
+
       // Debug pour voir la structure des données
       console.log('Properties loaded:', propertiesData);
+      console.log('Downloads loaded:', downloadsData);
+      console.log('Sell submissions loaded:', sellSubmissionsData);
+
       propertiesData.forEach((property, index) => {
         console.log(`Property ${index + 1} (${property.title}):`, {
           id: property.id,
@@ -504,6 +617,10 @@ const AdminPage = () => {
 
       setProperties(propertiesData);
       setStats(statsData);
+      setDownloads(downloadsData);
+      setDownloadStats(downloadStatsData);
+      setSellSubmissions(sellSubmissionsData);
+      setSellStats(sellStatsData);
     } catch (error) {
       console.error('Erreur chargement données admin:', error);
     } finally {
@@ -764,47 +881,6 @@ const AdminPage = () => {
     }).format(price);
   };
 
-  const createTestProperty = async () => {
-    try {
-      const testProperty = {
-        title: 'Villa Test avec Images',
-        description: 'Magnifique villa de test avec toutes les commodités modernes. Idéale pour tester l\'affichage des images dans l\'interface d\'administration.',
-        price: 250000,
-        surface: 120,
-        type: 'Villa',
-        status: 'Disponible',
-        location: {
-          address: '123 Rue Test',
-          city: 'Dakar',
-          country: 'Sénégal',
-          region: 'Africa',
-          coordinates: { lat: 14.7167, lng: -17.4677 } // Coordonnées de Dakar
-        },
-        rooms: 5,
-        bedrooms: 3,
-        bathrooms: 2,
-        images: [
-          'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=500&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=500&h=300&fit=crop',
-          'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=500&h=300&fit=crop'
-        ]
-      };
-
-      console.log('Creating test property:', testProperty);
-
-      const result = await adminService.createProperty(testProperty);
-
-      if (result.success) {
-        alert('Propriété test créée avec succès!');
-        loadData();
-      } else {
-        alert('Erreur lors de la création de la propriété test: ' + result.error);
-      }
-    } catch (error) {
-      console.error('Erreur création propriété test:', error);
-      alert('Erreur: ' + error.message);
-    }
-  };
 
   if (loading) {
     return (
@@ -869,18 +945,124 @@ const AdminPage = () => {
 
       </StatsGrid>
 
+      <DownloadsSection>
+        <DownloadsHeader>
+          <h3>
+            <FaDownload />
+            Téléchargements du Guide ({downloadStats.totalDownloads || 0})
+          </h3>
+          <ViewAllButton onClick={() => window.open('/admin/downloads', '_blank')}>
+            Voir tout
+          </ViewAllButton>
+        </DownloadsHeader>
+
+        {downloads.length > 0 ? (
+          <DownloadsTable>
+            <TableHeader>
+              <div>Email</div>
+              <div>Date</div>
+              <div>Heure</div>
+              <div>Téléchargements</div>
+            </TableHeader>
+            {downloads.slice(0, 5).map((download) => (
+              <TableRow key={download.id}>
+                <EmailCell>
+                  <FaEnvelope />
+                  {download.email}
+                </EmailCell>
+                <div>{new Date(download.timestamp).toLocaleDateString('fr-FR')}</div>
+                <div>{new Date(download.timestamp).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</div>
+                <div>
+                  <span style={{
+                    background: download.downloadCount >= 2 ? '#28a745' : '#6c757d',
+                    color: 'white',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '4px',
+                    fontSize: '0.8rem',
+                    fontWeight: '600'
+                  }}>
+                    {download.downloadCount || 1}x
+                  </span>
+                </div>
+              </TableRow>
+            ))}
+          </DownloadsTable>
+        ) : (
+          <EmptyDownloads>
+            <div className="icon">
+              <FaDownload />
+            </div>
+            <p>Aucun téléchargement pour le moment</p>
+          </EmptyDownloads>
+        )}
+      </DownloadsSection>
+
+      <DownloadsSection>
+        <DownloadsHeader>
+          <h3>
+            <FaHome />
+            Demandes de Vente ({sellStats.totalSubmissions || 0})
+          </h3>
+          <ViewAllButton onClick={() => window.open('/admin/sell-submissions', '_blank')}>
+            Voir tout
+          </ViewAllButton>
+        </DownloadsHeader>
+
+        {sellSubmissions.length > 0 ? (
+          <DownloadsTable>
+            <TableHeader>
+              <div>Contact</div>
+              <div>Bien</div>
+              <div>Date</div>
+              <div>Statut</div>
+            </TableHeader>
+            {sellSubmissions.slice(0, 5).map((submission) => (
+              <TableRow key={submission.id}>
+                <EmailCell>
+                  <FaEnvelope />
+                  {submission.firstName} {submission.lastName}
+                  <div style={{ fontSize: '0.8rem', color: '#666' }}>
+                    {submission.email}
+                  </div>
+                </EmailCell>
+                <div>
+                  <strong>{submission.propertyType}</strong>
+                  <div style={{ fontSize: '0.8rem', color: '#666' }}>
+                    {submission.surface} Sq.Ft • {submission.bedrooms}ch • {submission.bathrooms}sdb
+                  </div>
+                </div>
+                <div>{new Date(submission.timestamp).toLocaleDateString('fr-FR')}</div>
+                <div>
+                  <span style={{
+                    background: sellService.getStatusColor(submission.status),
+                    color: 'white',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '4px',
+                    fontSize: '0.8rem',
+                    fontWeight: '600'
+                  }}>
+                    {sellService.getStatusLabel(submission.status)}
+                  </span>
+                </div>
+              </TableRow>
+            ))}
+          </DownloadsTable>
+        ) : (
+          <EmptyDownloads>
+            <div className="icon">
+              <FaHome />
+            </div>
+            <p>Aucune demande de vente pour le moment</p>
+          </EmptyDownloads>
+        )}
+      </DownloadsSection>
+
       <ActionBar>
         <h2>Gestion des Propriétés</h2>
         <div style={{ display: 'flex', gap: '1rem' }}>
           <AddButton onClick={() => openModal()}>
             <FaPlus />
             Ajouter une propriété
-          </AddButton>
-          <AddButton
-            onClick={createTestProperty}
-            style={{ background: 'linear-gradient(135deg, #2196F3, #21CBF3)' }}
-          >
-            🧪 Créer propriété test
           </AddButton>
         </div>
       </ActionBar>

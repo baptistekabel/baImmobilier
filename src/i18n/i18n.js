@@ -9,6 +9,7 @@ const resources = {
       "nav.services": "Nos Services",
       "nav.about": "Qui sommes-nous ?",
       "nav.properties": "Propriétés",
+      "nav.sell": "Vendre",
       "nav.contact": "Contact",
 
       // Hero Section
@@ -139,6 +140,7 @@ const resources = {
       "nav.services": "Sunuy liggéey",
       "nav.about": "Kan la nu?",
       "nav.properties": "Kër yi",
+      "nav.sell": "Jaay",
       "nav.contact": "Jokkul ak nu",
 
       // Hero Section

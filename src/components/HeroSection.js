@@ -250,7 +250,8 @@ const HeroContent = styled.div`
   position: relative;
   z-index: 10;
   text-align: center;
-  max-width: 900px;
+  max-width: 1200px;
+  width: 100%;
   padding: 2rem;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
@@ -290,7 +291,7 @@ const HeroTitle = styled(motion.h1)`
   word-break: keep-all;
   overflow-wrap: normal;
   hyphens: none;
-  white-space: normal;
+  white-space: pre-line;
   line-height: 1.3;
 
   /* Couleur solide bien visible */
@@ -309,33 +310,45 @@ const HeroTitle = styled(motion.h1)`
   z-index: 10;
 
   /* Tailles responsives adaptées pour éviter la coupure */
-  font-size: clamp(1.8rem, 4vw, 4rem);
+  font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+
+  /* Assurer que le texte ne déborde pas et force une coupure */
+  max-width: none;
+  width: auto;
+  min-width: fit-content;
+  overflow: visible;
 
   @media (min-width: 1400px) {
-    font-size: clamp(3.5rem, 3.5vw, 4.5rem);
+    font-size: clamp(3rem, 3vw, 3.8rem);
     padding: 0 3rem;
   }
 
   @media (min-width: 1200px) and (max-width: 1399px) {
-    font-size: clamp(3rem, 3.8vw, 4rem);
+    font-size: clamp(2.5rem, 3.2vw, 3.5rem);
     padding: 0 2rem;
   }
 
   @media (max-width: 1199px) {
-    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
   }
 
   @media (max-width: 768px) {
-    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
     line-height: 1.4;
     padding: 0 1rem;
   }
 
   @media (max-width: 480px) {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
     -webkit-text-stroke: 0.5px rgba(218, 165, 32, 0.3);
     padding: 0 0.5rem;
     line-height: 1.5;
+  }
+
+  /* Ajout d'une règle spécifique pour éviter la coupure sur écrans moyens */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+    padding: 0 1.5rem;
   }
 `;
 
@@ -758,8 +771,13 @@ const HeroSection = () => {
 
   // Fonction pour créer un texte simple et visible - optimisée
   const SimpleText = React.memo(({ text, variants }) => {
-    // Ajouter un saut de ligne avant "construire" et un point à la fin
-    let formattedText = text.replace(/(\s+)construire/i, '\nconstruire');
+    // Forcer un saut de ligne optimal pour éviter la coupure des mots
+    let formattedText = text;
+
+    // Pour le titre français, créer deux lignes équilibrées avec espaces insécables
+    if (text.includes('Unir nos histoires')) {
+      formattedText = 'Unir nos histoires,\nconstruire notre\u00A0avenir.';
+    }
 
     // Ajouter un point à la fin si nécessaire
     if (!formattedText.endsWith('.')) {

@@ -237,7 +237,7 @@ const ContactBubble = () => {
   }, []);
 
   const handleCall = () => {
-    window.location.href = 'tel:+33123456789';
+    window.location.href = 'tel:0662368225';
   };
 
   const handleEmail = () => {

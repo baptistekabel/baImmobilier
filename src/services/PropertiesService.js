@@ -89,13 +89,13 @@ class PropertiesService {
     }
   }
 
-  // Récupérer les propriétés en vedette (les plus récentes, y compris vendues)
+  // Récupérer les propriétés en vente (les plus récentes, y compris vendues)
   async getFeaturedProperties(limit = 6) {
     try {
       const properties = await this.getAllProperties();
       return properties.slice(0, limit);
     } catch (error) {
-      console.error('Erreur lors du chargement des propriétés en vedette:', error);
+      console.error('Erreur lors du chargement des propriétés en vente:', error);
       return [];
     }
   }

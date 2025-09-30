@@ -460,7 +460,7 @@ const ContactPage = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="+33 1 23 45 67 89"
+                    placeholder="06 62 36 82 25"
                   />
                 </FormGroup>
               </FormGrid>

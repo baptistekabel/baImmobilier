@@ -15,7 +15,10 @@ import PropertiesPage from './pages/PropertiesPage';
 import ContactPage from './pages/ContactPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
 import PropertyDetailPage from './pages/PropertyDetailPage';
+import SellPage from './pages/SellPage';
 import AdminPage from './pages/AdminPage';
+import AdminSellSubmissionsPage from './pages/AdminSellSubmissionsPage';
+import AdminDownloadsPage from './pages/AdminDownloadsPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -44,8 +47,11 @@ function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/properties" element={<PropertiesPage />} />
                 <Route path="/properties/:id" element={<PropertyDetailPage />} />
+                <Route path="/vendre" element={<SellPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/admin" element={<AdminPage />} />
+                <Route path="/admin/sell-submissions" element={<AdminSellSubmissionsPage />} />
+                <Route path="/admin/downloads" element={<AdminDownloadsPage />} />
               </Routes>
             </main>
             <Footer />
