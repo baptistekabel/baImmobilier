@@ -589,14 +589,6 @@ const InvestmentGuideSection = () => {
                   <StatNumber>100%</StatNumber>
                   <StatLabel>Gratuit</StatLabel>
                 </StatItem>
-                <StatItem>
-                  <StatNumber>2</StatNumber>
-                  <StatLabel>Continents</StatLabel>
-                </StatItem>
-                <StatItem>
-                  <StatNumber>10+</StatNumber>
-                  <StatLabel>Stratégies</StatLabel>
-                </StatItem>
               </VisualStats>
             </VisualCard>
           </GuideVisual>

@@ -36,6 +36,8 @@ const resources = {
       "services.construction.desc": "Concrétisez vos projets de construction neuve de A à Z",
       "services.consulting.title": "Conseil",
       "services.consulting.desc": "Accompagnement personnalisé dans vos projets immobiliers",
+      "services.propertyHunting.title": "Chasseur de biens",
+      "services.propertyHunting.desc": "Service personnalisé de recherche de biens immobiliers selon vos critères spécifiques.",
 
       // Why Choose Us
       "why.title": "Pourquoi nous choisir ?",
@@ -50,7 +52,7 @@ const resources = {
       "about.story.title": "Mon histoire",
       "about.story.intro": "Je suis Idriss Ba, fondateur de BA Immobilier. Fils d'un père sénégalais et d'une mère guadeloupéenne, j'ai grandi avec deux cultures, deux continents, deux visions du monde.",
       "about.story.identity": "Cette double identité m'a appris une chose essentielle : l'Afrique et la Caraïbe doivent être reliées par des passerelles solides.",
-      "about.story.mission": "C'est cette conviction qui m'anime aujourd'hui : permettre à la diaspora et aux investisseurs locaux de bâtir ensemble un immobilier durable, rentable et transparent, en commençant par le Sénégal.",
+      "about.story.mission": "C'est cette conviction qui m'anime aujourd'hui : permettre à la diaspora et aux investisseurs locaux de bâtir ensemble un immobilier durable, rentable et transparent.",
 
       "about.senegal.title": "Pourquoi le Sénégal ?",
       "about.senegal.intro": "Le Sénégal est aujourd'hui l'un des marchés immobiliers les plus attractifs d'Afrique :",
@@ -167,6 +169,8 @@ const resources = {
       "services.construction.desc": "Jëf kër bu bees ci samay jàppale",
       "services.consulting.title": "Ngënëm",
       "services.consulting.desc": "Jàppale ci kër ngir bokk ak yow",
+      "services.propertyHunting.title": "Wutalkat kër",
+      "services.propertyHunting.desc": "Liggéey bu njariñ ngir gis kër bu baax ci sa bëgg-bëgg.",
 
       // Why Choose Us
       "why.title": "Lu tax nga tànn nu?",

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import {
-  FaGraduationCap,
   FaBuilding,
   FaHome,
   FaGlobeAmericas,
@@ -12,12 +11,10 @@ import {
   FaUsers,
   FaMapMarkedAlt,
   FaHandshake,
-  FaLightbulb,
   FaFlag,
   FaUniversity,
   FaBriefcase,
   FaStar,
-  FaRocket,
   FaKey,
   FaTools,
   FaCompass
@@ -59,9 +56,17 @@ const slideInRight = keyframes`
 `;
 
 const AboutContainer = styled.section`
-  padding: 5rem 0;
+  padding: 0;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+`;
+
+// Hero Section
+const HeroSection = styled.div`
   background: linear-gradient(135deg, ${props => props.theme.colors.primary} 0%, rgba(12, 28, 69, 0.95) 100%);
-  color: ${props => props.theme.colors.white};
+  color: white;
+  padding: 8rem 0 6rem 0;
   position: relative;
   overflow: hidden;
 
@@ -76,25 +81,12 @@ const AboutContainer = styled.section`
     animation: ${float} 20s ease-in-out infinite;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(ellipse at 10% 30%, rgba(218, 165, 32, 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 90% 70%, rgba(60, 179, 113, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    padding: 3rem 0;
+    padding: 6rem 0 4rem 0;
   }
 `;
 
-const Container = styled.div`
+const HeroContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
@@ -106,33 +98,147 @@ const Container = styled.div`
   }
 `;
 
-const MainContentGrid = styled.div`
+const HeroGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 4rem;
+  align-items: center;
 
   @media (min-width: ${props => props.theme.breakpoints.tablet}) {
-    grid-template-columns: 1fr 2fr;
-    align-items: start;
+    grid-template-columns: 1fr 400px;
+    gap: 6rem;
   }
 `;
 
-const SidebarContent = styled.div`
-  position: sticky;
-  top: 2rem;
+const HeroContent = styled.div`
+  text-align: center;
 
-  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-    position: relative;
-    top: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    text-align: left;
   }
 `;
 
-const MainContent = styled.div`
-  /* Contenu principal */
+const HeroTitle = styled.h1`
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #ffffff, ${props => props.theme.colors.gold});
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+`;
+
+const HeroSubtitle = styled.p`
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    font-size: 1.1rem;
+  }
+`;
+
+const HeroMediaContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  order: -1;
+
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    order: 0;
+  }
+`;
+
+// Content Sections
+const MainSection = styled.section`
+  padding: 6rem 0;
+
+  &:nth-child(even) {
+    background: #f8fafb;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    padding: 4rem 0;
+  }
+`;
+
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    padding: 0 1rem;
+  }
+`;
+
+const SectionTitle = styled.h2`
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: ${props => props.theme.colors.primary};
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, ${props => props.theme.colors.gold}, ${props => props.theme.colors.primary});
+    border-radius: 2px;
+  }
+`;
+
+const SectionGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+
+    &.reverse {
+      direction: rtl;
+      * {
+        direction: ltr;
+      }
+    }
+  }
+`;
+
+const TextContent = styled.div`
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: ${props => props.theme.colors.primary};
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+`;
+
+const MediaContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ProfileSection = styled.div`
@@ -140,7 +246,12 @@ const ProfileSection = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  width: 100%;
+
+  @media (min-width: ${props => props.theme.breakpoints.tablet}) {
+    gap: 2.5rem;
+  }
 `;
 
 const ProfileImageContainer = styled.div`
@@ -152,8 +263,8 @@ const ProfileImageContainer = styled.div`
 `;
 
 const ProfileImage = styled.div`
-  width: 320px;
-  height: 320px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   background: linear-gradient(135deg, ${props => props.theme.colors.gold}, #B8860B);
   display: flex;
@@ -194,16 +305,21 @@ const ProfileImage = styled.div`
     padding: 8px;
   }
 
-  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     width: 250px;
     height: 250px;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    width: 200px;
+    height: 200px;
   }
 `;
 
 const VideoContainer = styled.div`
   position: relative;
   width: 100%;
-  max-width: 300px;
+  max-width: 350px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: ${props => props.theme.shadows.heavy};
@@ -218,6 +334,14 @@ const VideoContainer = styled.div`
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
+    max-width: 300px;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    max-width: 250px;
   }
 `;
 
@@ -250,37 +374,6 @@ const PlayButton = styled.div`
   }
 `;
 
-const SectionTitle = styled.h2`
-  color: ${props => props.theme.colors.gold};
-  margin-bottom: 2rem;
-  position: relative;
-  font-size: 3rem;
-  background: linear-gradient(45deg, ${props => props.theme.colors.gold}, #FFD700);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(90deg, ${props => props.theme.colors.gold}, transparent);
-    border-radius: 2px;
-
-    @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
-  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: 2.2rem;
-  }
-`;
-
 // Nouveaux composants pour le contenu restructuré
 const ContentSection = styled.div`
   margin-bottom: 5rem;
@@ -295,6 +388,9 @@ const ContentTitle = styled.h3`
   align-items: center;
   gap: 1rem;
   font-family: ${props => props.theme.fonts.title};
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 
   @media (max-width: ${props => props.theme.breakpoints.mobile}) {
     font-size: 1.8rem;
@@ -495,6 +591,9 @@ const IntegratedVideoTitle = styled.h3`
   color: ${props => props.theme.colors.gold};
   margin-bottom: 1rem;
   font-family: ${props => props.theme.fonts.title};
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   position: relative;
   z-index: 1;
 
@@ -579,7 +678,7 @@ const AboutSection = () => {
   const promises = [
     { icon: <FaShieldAlt />, text: t('about.promise.rigor') },
     { icon: <FaHandshake />, text: t('about.promise.proximity') },
-    { icon: <FaRocket />, text: t('about.promise.vision') }
+    { icon: <FaGlobeAmericas />, text: t('about.promise.vision') }
   ];
 
   const handleVideoPlay = () => {
@@ -601,16 +700,21 @@ const AboutSection = () => {
 
   return (
     <AboutContainer>
-      <Container>
-        <MainContentGrid>
-          <SidebarContent>
-            <ProfileSection>
-              <ProfileImageContainer>
-                <ProfileImage>
-                  <img src={idrissPhoto} alt="Idriss Ba" />
-                </ProfileImage>
-              </ProfileImageContainer>
-
+      {/* Hero Section */}
+      <HeroSection>
+        <HeroContainer>
+          <HeroGrid>
+            <HeroContent>
+              <HeroTitle>{t('about.story.title')}</HeroTitle>
+              <HeroSubtitle>{t('about.story.intro')}</HeroSubtitle>
+              <HeroSubtitle>
+                <strong>{t('about.story.identity')}</strong>
+              </HeroSubtitle>
+            </HeroContent>
+            <HeroMediaContainer>
+              <ProfileImage>
+                <img src={idrissPhoto} alt="Idriss Ba" />
+              </ProfileImage>
               <VideoContainer>
                 <video
                   id="presentation-video"
@@ -625,105 +729,18 @@ const AboutSection = () => {
                   <PlayButton onClick={handleVideoPlay} />
                 )}
               </VideoContainer>
-            </ProfileSection>
-          </SidebarContent>
+            </HeroMediaContainer>
+          </HeroGrid>
+        </HeroContainer>
+      </HeroSection>
 
-          <MainContent>
-            {/* Mon histoire */}
-            <ContentSection>
-              <ContentTitle>
-                <FaHeart /> {t('about.story.title')}
-              </ContentTitle>
-              <ContentText>
-                {t('about.story.intro')}
-              </ContentText>
-              <ContentText>
-                <HighlightText>{t('about.story.identity')}</HighlightText>
-              </ContentText>
-              <ContentText>
-                {t('about.story.mission')}
-              </ContentText>
-            </ContentSection>
-
-            {/* Pourquoi le Sénégal */}
-            <ContentSection>
-              <ContentTitle>
-                <FaFlag /> {t('about.senegal.title')}
-              </ContentTitle>
-              <ContentText>
-                <HighlightText>{t('about.senegal.intro')}</HighlightText>
-              </ContentText>
-              <ListContainer>
-                {senegalAdvantages.map((item, index) => (
-                  <ListItem key={index}>
-                    <ListIcon>{item.icon}</ListIcon>
-                    <span>{item.text}</span>
-                  </ListItem>
-                ))}
-              </ListContainer>
-              <ContentText>
-                <HighlightText>{t('about.senegal.conclusion')}</HighlightText>
-              </ContentText>
-            </ContentSection>
-
-            {/* Mon parcours */}
-            <ContentSection>
-              <ContentTitle>
-                <FaGraduationCap /> {t('about.journey.title')}
-              </ContentTitle>
-              <ContentText>
-                <HighlightText>{t('about.journey.education')}</HighlightText>
-              </ContentText>
-              <ContentText>
-                {t('about.journey.experience')}
-              </ContentText>
-
-              <ExperienceGrid>
-                {experiences.map((exp, index) => (
-                  <ExperienceCard key={index}>
-                    <CompanyLogo>{exp.icon}</CompanyLogo>
-                    <CompanyName>{exp.company}</CompanyName>
-                    <Position>{exp.position}</Position>
-                    <Description>{exp.description}</Description>
-                  </ExperienceCard>
-                ))}
-              </ExperienceGrid>
-
-              <ContentText>
-                <HighlightText>{t('about.journey.conclusion')}</HighlightText>
-              </ContentText>
-            </ContentSection>
-
-            {/* Vidéo de présentation intégrée */}
-            <IntegratedVideoSection>
-              <IntegratedVideoTitle>{t('about.video.title')}</IntegratedVideoTitle>
-              <IntegratedVideoDescription>
-                {t('about.video.description')}
-              </IntegratedVideoDescription>
-              <IntegratedVideoContainer>
-                <video
-                  id="integrated-video"
-                  controls={isSecondVideoPlaying}
-                  poster="./previewVideo2.png"
-                  onPlay={() => setIsSecondVideoPlaying(true)}
-                >
-                  <source src="/previewVideo2.mp4" type="video/mp4" />
-                  Votre navigateur ne supporte pas la lecture vidéo.
-                </video>
-                {!isSecondVideoPlaying && (
-                  <PlayButton onClick={handleSecondVideoPlay} />
-                )}
-              </IntegratedVideoContainer>
-            </IntegratedVideoSection>
-
-            {/* Notre mission */}
-            <ContentSection>
-              <ContentTitle>
-                <FaRocket /> {t('about.mission.title')}
-              </ContentTitle>
-              <ContentText>
-                {t('about.mission.intro')}
-              </ContentText>
+      {/* Mission Section */}
+      <MainSection>
+        <Container>
+          <SectionTitle>{t('about.story.mission')}</SectionTitle>
+          <SectionGrid>
+            <TextContent>
+              <p>{t('about.mission.intro')}</p>
               <ListContainer>
                 <ListItem>
                   <ListIcon><FaUsers /></ListIcon>
@@ -738,43 +755,92 @@ const AboutSection = () => {
                   <span>{t('about.mission.future')}</span>
                 </ListItem>
               </ListContainer>
-            </ContentSection>
+            </TextContent>
+            <MediaContainer>
+              {/* On peut ajouter une image ou graphique ici */}
+            </MediaContainer>
+          </SectionGrid>
+        </Container>
+      </MainSection>
 
-            {/* Nos engagements */}
-            <ContentSection>
-              <ContentTitle>
-                <FaHandshake /> {t('about.commitments.title')}
-              </ContentTitle>
-              <ContentText>
-                <HighlightText>{t('about.commitments.intro')}</HighlightText>
-              </ContentText>
-              <ContentText>
-                {t('about.commitments.services')}
-              </ContentText>
-
-              <ServicesGrid>
-                {services.map((service, index) => (
-                  <ServiceCard key={index}>
-                    <ServiceIcon>{service.icon}</ServiceIcon>
-                    <ServiceTitle>{service.title}</ServiceTitle>
-                    <ServiceDescription>{service.description}</ServiceDescription>
-                  </ServiceCard>
+      {/* Sénégal Section */}
+      <MainSection>
+        <Container>
+          <SectionTitle>{t('about.senegal.title')}</SectionTitle>
+          <SectionGrid className="reverse">
+            <MediaContainer>
+              {/* Image du Sénégal ou carte */}
+            </MediaContainer>
+            <TextContent>
+              <p><strong>{t('about.senegal.intro')}</strong></p>
+              <ListContainer>
+                {senegalAdvantages.map((item, index) => (
+                  <ListItem key={index}>
+                    <ListIcon>{item.icon}</ListIcon>
+                    <span>{item.text}</span>
+                  </ListItem>
                 ))}
-              </ServicesGrid>
+              </ListContainer>
+              <p><strong>{t('about.senegal.conclusion')}</strong></p>
+            </TextContent>
+          </SectionGrid>
+        </Container>
+      </MainSection>
 
-              <ContentText>
-                <HighlightText>{t('about.commitments.quality')}</HighlightText>
-              </ContentText>
-            </ContentSection>
+      {/* Parcours Section */}
+      <MainSection>
+        <Container>
+          <SectionTitle>{t('about.journey.title')}</SectionTitle>
+          <TextContent style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p><strong>{t('about.journey.education')}</strong></p>
+            <p>{t('about.journey.experience')}</p>
+          </TextContent>
+          <ExperienceGrid>
+            {experiences.map((exp, index) => (
+              <ExperienceCard key={index}>
+                <CompanyLogo>{exp.icon}</CompanyLogo>
+                <CompanyName>{exp.company}</CompanyName>
+                <Position>{exp.position}</Position>
+                <Description>{exp.description}</Description>
+              </ExperienceCard>
+            ))}
+          </ExperienceGrid>
+          <TextContent style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <p><strong>{t('about.journey.conclusion')}</strong></p>
+          </TextContent>
+        </Container>
+      </MainSection>
 
-            {/* Ma promesse */}
-            <ContentSection>
-              <ContentTitle>
-                <FaLightbulb /> {t('about.promise.title')}
-              </ContentTitle>
-              <ContentText>
-                {t('about.promise.intro')}
-              </ContentText>
+      {/* Engagements Section */}
+      <MainSection>
+        <Container>
+          <SectionTitle>{t('about.commitments.title')}</SectionTitle>
+          <TextContent style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p><strong>{t('about.commitments.intro')}</strong></p>
+            <p>{t('about.commitments.services')}</p>
+          </TextContent>
+          <ServicesGrid>
+            {services.map((service, index) => (
+              <ServiceCard key={index}>
+                <ServiceIcon>{service.icon}</ServiceIcon>
+                <ServiceTitle>{service.title}</ServiceTitle>
+                <ServiceDescription>{service.description}</ServiceDescription>
+              </ServiceCard>
+            ))}
+          </ServicesGrid>
+          <TextContent style={{ textAlign: 'center', marginTop: '3rem' }}>
+            <p><strong>{t('about.commitments.quality')}</strong></p>
+          </TextContent>
+        </Container>
+      </MainSection>
+
+      {/* Promesse Section */}
+      <MainSection>
+        <Container>
+          <SectionTitle>{t('about.promise.title')}</SectionTitle>
+          <SectionGrid>
+            <TextContent>
+              <p>{t('about.promise.intro')}</p>
               <ListContainer>
                 {promises.map((promise, index) => (
                   <ListItem key={index}>
@@ -783,14 +849,27 @@ const AboutSection = () => {
                   </ListItem>
                 ))}
               </ListContainer>
-              <ContentText>
-                <HighlightText>{t('about.promise.conclusion')}</HighlightText>
-              </ContentText>
-            </ContentSection>
-          </MainContent>
-        </MainContentGrid>
-      </Container>
-
+              <p><strong>{t('about.promise.conclusion')}</strong></p>
+            </TextContent>
+            <MediaContainer>
+              <IntegratedVideoContainer>
+                <video
+                  id="integrated-video"
+                  controls={isSecondVideoPlaying}
+                  poster="./previewVideo2.png"
+                  onPlay={() => setIsSecondVideoPlaying(true)}
+                >
+                  <source src="/previewVideo2.mp4" type="video/mp4" />
+                  Votre navigateur ne supporte pas la lecture vidéo.
+                </video>
+                {!isSecondVideoPlaying && (
+                  <PlayButton onClick={handleSecondVideoPlay} />
+                )}
+              </IntegratedVideoContainer>
+            </MediaContainer>
+          </SectionGrid>
+        </Container>
+      </MainSection>
     </AboutContainer>
   );
 };

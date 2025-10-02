@@ -33,15 +33,21 @@ const Logo = styled(Link)`
   display: flex;
   align-items: center;
   font-family: ${props => props.theme.fonts.title};
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: ${props => props.theme.colors.primary};
   text-decoration: none;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: uppercase;
 
   &:hover {
     color: ${props => props.theme.colors.gold};
     transform: scale(1.02);
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
+    font-size: 1.2rem;
   }
 `;
 
@@ -71,7 +77,14 @@ const Navigation = styled.nav.withConfig({
 })`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
+  margin-left: 2rem;
+  flex-wrap: nowrap;
+
+  @media (max-width: 1100px) {
+    gap: 1rem;
+    margin-left: 1rem;
+  }
 
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     display: ${props => props.isOpen ? 'flex' : 'none'};
@@ -85,6 +98,7 @@ const Navigation = styled.nav.withConfig({
     padding: 2rem;
     box-shadow: ${props => props.theme.shadows.medium};
     gap: 1rem;
+    margin-left: 0;
   }
 `;
 
@@ -96,6 +110,7 @@ const NavLink = styled(Link)`
   padding: 0.5rem 0;
   position: relative;
   transition: color 0.3s ease;
+  white-space: nowrap;
 
   &:hover {
     color: ${props => props.theme.colors.gold};
@@ -114,6 +129,54 @@ const NavLink = styled(Link)`
 
   &:hover::after {
     width: 100%;
+  }
+`;
+
+const ContactButton = styled(Link)`
+  font-family: ${props => props.theme.fonts.body};
+  font-weight: 600;
+  color: ${props => props.theme.colors.white};
+  text-decoration: none;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, ${props => props.theme.colors.gold}, #FFD700);
+  border-radius: 25px;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+  border: 2px solid transparent;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, ${props => props.theme.colors.primary}, #1e3a8a);
+    transition: left 0.3s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+    color: ${props => props.theme.colors.white};
+
+    &::before {
+      left: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.tablet}) {
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    margin-top: 1rem;
   }
 `;
 
@@ -185,9 +248,9 @@ const Header = () => {
           <NavLink to="/vendre" onClick={() => setIsMenuOpen(false)}>
             {t('nav.sell')}
           </NavLink>
-          <NavLink to="/contact" onClick={() => setIsMenuOpen(false)}>
+          <ContactButton to="/contact" onClick={() => setIsMenuOpen(false)}>
             {t('nav.contact')}
-          </NavLink>
+          </ContactButton>
 
           <LanguageDropdown />
         </Navigation>

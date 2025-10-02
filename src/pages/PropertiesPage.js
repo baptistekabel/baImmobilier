@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SEO from '../components/SEO';
 import PropertyCard from '../components/PropertyCard';
+import AdvancedFilters from '../components/AdvancedFilters';
 import { getSeoConfig } from '../utils/seoConfig';
 import { propertiesService } from '../services/PropertiesService';
 import styled from 'styled-components';
@@ -47,6 +48,12 @@ const FiltersContainer = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   margin: 2rem 0;
+  padding: 0 2rem;
+`;
+
+const FiltersSection = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 0 2rem;
 `;
 
@@ -177,6 +184,7 @@ const PropertiesPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('all');
+  const [advancedFilters, setAdvancedFilters] = useState({});
   const [stats, setStats] = useState(null);
 
   const seoConfig = getSeoConfig('properties');
@@ -188,7 +196,7 @@ const PropertiesPage = () => {
 
   useEffect(() => {
     filterProperties();
-  }, [properties, searchTerm, activeFilter]);
+  }, [properties, searchTerm, activeFilter, advancedFilters]);
 
   const loadProperties = async () => {
     try {
@@ -225,7 +233,7 @@ const PropertiesPage = () => {
       );
     }
 
-    // Filtrage par catégorie
+    // Filtrage par catégorie (filtres simples)
     if (activeFilter !== 'all') {
       if (activeFilter === 'africa') {
         filtered = filtered.filter(p => p.location.region === 'Africa');
@@ -233,6 +241,81 @@ const PropertiesPage = () => {
         filtered = filtered.filter(p => p.location.region === 'Antilles');
       } else {
         filtered = filtered.filter(p => p.type === activeFilter);
+      }
+    }
+
+    // Filtrage avancé
+    if (advancedFilters) {
+      // Localisation
+      if (advancedFilters.city && advancedFilters.city.trim()) {
+        filtered = filtered.filter(p =>
+          p.location.city.toLowerCase().includes(advancedFilters.city.toLowerCase())
+        );
+      }
+      if (advancedFilters.country && advancedFilters.country.trim()) {
+        filtered = filtered.filter(p =>
+          p.location.country.toLowerCase().includes(advancedFilters.country.toLowerCase())
+        );
+      }
+      if (advancedFilters.region && advancedFilters.region.trim()) {
+        filtered = filtered.filter(p => p.location.region === advancedFilters.region);
+      }
+
+      // Prix
+      if (advancedFilters.priceMin && advancedFilters.priceMin.trim()) {
+        filtered = filtered.filter(p => p.price >= parseInt(advancedFilters.priceMin));
+      }
+      if (advancedFilters.priceMax && advancedFilters.priceMax.trim()) {
+        filtered = filtered.filter(p => p.price <= parseInt(advancedFilters.priceMax));
+      }
+
+      // Type de propriété
+      if (advancedFilters.propertyType && advancedFilters.propertyType.trim()) {
+        filtered = filtered.filter(p => p.type === advancedFilters.propertyType);
+      }
+
+      // Caractéristiques
+      if (advancedFilters.bedrooms && advancedFilters.bedrooms.trim()) {
+        const bedrooms = advancedFilters.bedrooms === '5+' ? 5 : parseInt(advancedFilters.bedrooms);
+        if (advancedFilters.bedrooms === '5+') {
+          filtered = filtered.filter(p => p.bedrooms >= bedrooms);
+        } else {
+          filtered = filtered.filter(p => p.bedrooms === bedrooms);
+        }
+      }
+      if (advancedFilters.bathrooms && advancedFilters.bathrooms.trim()) {
+        const bathrooms = advancedFilters.bathrooms === '5+' ? 5 : parseInt(advancedFilters.bathrooms);
+        if (advancedFilters.bathrooms === '5+') {
+          filtered = filtered.filter(p => p.bathrooms >= bathrooms);
+        } else {
+          filtered = filtered.filter(p => p.bathrooms === bathrooms);
+        }
+      }
+
+      // Surface
+      if (advancedFilters.surfaceMin && advancedFilters.surfaceMin.trim()) {
+        filtered = filtered.filter(p => p.surface >= parseInt(advancedFilters.surfaceMin));
+      }
+      if (advancedFilters.surfaceMax && advancedFilters.surfaceMax.trim()) {
+        filtered = filtered.filter(p => p.surface <= parseInt(advancedFilters.surfaceMax));
+      }
+
+      // Année de construction
+      if (advancedFilters.yearBuiltMin && advancedFilters.yearBuiltMin.trim()) {
+        filtered = filtered.filter(p => p.yearBuilt >= parseInt(advancedFilters.yearBuiltMin));
+      }
+      if (advancedFilters.yearBuiltMax && advancedFilters.yearBuiltMax.trim()) {
+        filtered = filtered.filter(p => p.yearBuilt <= parseInt(advancedFilters.yearBuiltMax));
+      }
+
+      // Équipements
+      if (advancedFilters.amenities && advancedFilters.amenities.length > 0) {
+        filtered = filtered.filter(property => {
+          // Vérifier que la propriété a tous les équipements demandés
+          return advancedFilters.amenities.every(amenity =>
+            property.amenities && property.amenities.includes(amenity)
+          );
+        });
       }
     }
 
@@ -314,6 +397,13 @@ const PropertiesPage = () => {
             ))}
           </FiltersContainer>
         </HeaderSection>
+
+        <FiltersSection>
+          <AdvancedFilters
+            onFiltersChange={setAdvancedFilters}
+            totalResults={filteredProperties.length}
+          />
+        </FiltersSection>
 
         {loading ? (
           <LoadingContainer>

@@ -2,13 +2,14 @@ import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { FaHome, FaKey, FaBuilding, FaTools, FaHardHat, FaArrowRight, FaMapMarkedAlt } from 'react-icons/fa';
+import { FaHome, FaKey, FaBuilding, FaTools, FaHardHat, FaArrowRight, FaMapMarkedAlt, FaSearch } from 'react-icons/fa';
 import { motion, useInView } from 'framer-motion';
 import immobilier1 from '../assets/images/immobilier1.jpeg';
 import immobilier2 from '../assets/images/immobilier2.jpg';
 import immobilier3 from '../assets/images/immobilier3.jpg';
 import immobilier4 from '../assets/images/immobilier4.jpg';
 import conseilImage from '../assets/images/conseil.jpeg';
+import chasseurBien from '../assets/images/chasseurBien.png';
 
 const float = keyframes`
   0%, 100% { transform: translateY(0px); }
@@ -384,6 +385,13 @@ const ServicesSection = () => {
       descKey: 'services.consulting.desc',
       slug: 'conseil',
       image: conseilImage
+    },
+    {
+      icon: <FaSearch />,
+      titleKey: 'services.propertyHunting.title',
+      descKey: 'services.propertyHunting.desc',
+      slug: 'chasseur-de-biens',
+      image: chasseurBien
     }
   ];
 

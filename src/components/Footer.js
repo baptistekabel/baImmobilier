@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram } from 'react-icons/fa';
 import logo from '../assets/images/logoBaImmobilier.jpeg';
 
 const FooterContainer = styled.footer`
@@ -82,10 +82,15 @@ const ContactInfo = styled.div`
   align-items: center;
   gap: 1rem;
   transition: all 0.3s ease;
+  white-space: nowrap;
 
   &:hover {
     transform: translateX(5px);
     color: ${props => props.theme.colors.gold};
+  }
+
+  span {
+    font-size: 0.9rem;
   }
 `;
 
@@ -154,6 +159,7 @@ const LogoText = styled.span`
   font-size: 1.5rem;
   font-weight: 700;
   color: ${props => props.theme.colors.white};
+  text-transform: uppercase;
 `;
 
 const Footer = () => {
@@ -200,16 +206,7 @@ const Footer = () => {
             <FooterTitle>{t('footer.social')}</FooterTitle>
             <SocialLinks>
               <SocialLink href="#" target="_blank" rel="noopener noreferrer">
-                <FaFacebookF />
-              </SocialLink>
-              <SocialLink href="#" target="_blank" rel="noopener noreferrer">
                 <FaInstagram />
-              </SocialLink>
-              <SocialLink href="#" target="_blank" rel="noopener noreferrer">
-                <FaTwitter />
-              </SocialLink>
-              <SocialLink href="#" target="_blank" rel="noopener noreferrer">
-                <FaLinkedinIn />
               </SocialLink>
             </SocialLinks>
           </FooterSection>

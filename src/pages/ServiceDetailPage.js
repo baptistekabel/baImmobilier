@@ -9,6 +9,7 @@ import immobilier2 from '../assets/images/immobilier2.jpg';
 import immobilier3 from '../assets/images/immobilier3.jpg';
 import immobilier4 from '../assets/images/immobilier4.jpg';
 import conseilImage from '../assets/images/conseil.jpeg';
+import chasseurBien from '../assets/images/chasseurBien.png';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -443,6 +444,30 @@ const serviceData = {
       { title: "Stratégie Personnalisée", description: "Élaboration plan d'action sur-mesure avec simulations et scénarios optimisés" },
       { title: "Mise en Œuvre Accompagnée", description: "Déploiement opérationnel avec suivi rapproché et ajustements en temps réel" },
       { title: "Optimisation Continue", description: "Monitoring performance, rééquilibrage et saisie nouvelles opportunités marché" }
+    ]
+  },
+  "chasseur-de-biens": {
+    title: "Chasseur de Biens Immobiliers Premium",
+    subtitle: "Service personnalisé de recherche de biens immobiliers sur-mesure - Tarification sur devis selon vos critères",
+    icon: "🔍",
+    image: chasseurBien,
+    color: "#9333EA",
+    description: "Trouver le bien immobilier parfait nécessite du temps, de l'expertise et un réseau étendu. Notre service de chasseur de biens immobiliers transforme cette recherche en mission sur-mesure. Grâce à notre connaissance approfondie des marchés africains et antillais, notre réseau de partenaires privilégiés et notre méthodologie rigoureuse, nous identifions et sélectionnons pour vous les biens qui correspondent exactement à vos critères. Que vous recherchiez une résidence principale, un investissement locatif ou un bien d'exception, nous mettons notre expertise à votre service pour dénicher les opportunités avant qu'elles ne soient sur le marché.",
+    features: [
+      "Recherche proactive dans notre réseau exclusif de biens off-market",
+      "Analyse personnalisée de vos critères et définition du cahier des charges optimal",
+      "Veille marché quotidienne avec alertes en temps réel sur les nouvelles opportunités",
+      "Présélection rigoureuse des biens selon vos exigences qualité/prix/localisation",
+      "Visites accompagnées avec expertise technique et négociation des conditions",
+      "Due diligence complète : vérifications juridiques, diagnostics et potentiel",
+      "Négociation experte pour obtenir les meilleures conditions d'acquisition",
+      "Accompagnement complet jusqu'à la signature et au-delà"
+    ],
+    process: [
+      { title: "Briefing Détaillé", description: "Analyse approfondie de vos besoins, budget, timeline et critères prioritaires" },
+      { title: "Recherche Ciblée", description: "Activation de notre réseau et recherche proactive dans notre base exclusive" },
+      { title: "Présélection Expert", description: "Analyse et visite des biens, présentation des opportunités correspondantes" },
+      { title: "Accompagnement Acquisition", description: "Négociation, due diligence et finalisation de votre acquisition optimale" }
     ]
   }
 };

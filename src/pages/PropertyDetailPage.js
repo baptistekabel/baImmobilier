@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { FaArrowLeft, FaHome, FaDoorOpen, FaBed, FaBath, FaMapMarkerAlt, FaPhone, FaEnvelope, FaChevronLeft, FaChevronRight, FaPlay, FaSwimmingPool, FaSeedling, FaCar, FaBuilding, FaSnowflake, FaFire, FaShieldAlt, FaArrowUp, FaWater, FaCheck } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ApproximateLocationMap from '../components/ApproximateLocationMap';
-import PropertyFAQ from '../components/PropertyFAQ';
 import { propertiesService } from '../services/PropertiesService';
 import { formatAddressForCard } from '../utils/addressUtils';
 
@@ -675,10 +674,6 @@ const PropertyDetailPage = () => {
                 )}
               </DetailsSection>
 
-              <PropertyFAQ
-                propertyType={property.type}
-                location={property.location}
-              />
             </LeftColumn>
 
             <RightColumn>

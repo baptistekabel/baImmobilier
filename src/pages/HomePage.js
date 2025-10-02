@@ -6,6 +6,7 @@ import FeaturedPropertiesSection from '../components/FeaturedPropertiesSection';
 import ServicesSection from '../components/ServicesSection';
 import WhyChooseUsSection from '../components/WhyChooseUsSection';
 import InvestmentGuideSection from '../components/InvestmentGuideSection';
+import FAQSection from '../components/FAQSection';
 
 const HomePage = () => {
   const seoConfig = getSeoConfig('home');
@@ -23,6 +24,7 @@ const HomePage = () => {
       <ServicesSection />
       <InvestmentGuideSection />
       <WhyChooseUsSection />
+      <FAQSection />
     </>
   );
 };
