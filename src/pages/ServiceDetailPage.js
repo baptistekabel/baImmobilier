@@ -469,6 +469,30 @@ const serviceData = {
       { title: "Présélection Expert", description: "Analyse et visite des biens, présentation des opportunités correspondantes" },
       { title: "Accompagnement Acquisition", description: "Négociation, due diligence et finalisation de votre acquisition optimale" }
     ]
+  },
+  "projet-sur-plan": {
+    title: "Projet sur Plan - Investissement Immobilier Neuf",
+    subtitle: "Investissez en sécurité dans des projets immobiliers neufs avec plans détaillés et suivi personnalisé",
+    icon: "📐",
+    image: immobilier3,
+    color: "#10B981",
+    description: "L'investissement dans l'immobilier neuf sur plan offre des opportunités exceptionnelles de rendement et de plus-value, mais nécessite une expertise pointue pour éviter les écueils. BA Immobilier vous accompagne dans la sélection et l'acquisition de projets immobiliers neufs rigoureusement sélectionnés. Grâce à notre réseau de promoteurs partenaires de confiance en Afrique et aux Antilles, nous vous proposons des programmes immobiliers d'exception avec garanties de livraison, financement optimisé et suivi personnalisé du chantier.",
+    features: [
+      "Sélection exclusive de projets immobiliers neufs avec promoteurs certifiés",
+      "Plans détaillés, images 3D et visites virtuelles des futurs biens",
+      "Financement spécialisé : prêts travaux, VEFA et solutions diaspora",
+      "Suivi de chantier mensuel avec photos et rapports d'avancement",
+      "Garanties promoteur : achèvement, bon fonctionnement et parfait achèvement",
+      "Accompagnement juridique spécialisé VEFA et contrats de réservation",
+      "Optimisation fiscale : dispositifs défiscalisation et amortissements",
+      "Gestion locative clé en main dès la livraison du bien"
+    ],
+    process: [
+      { title: "Sélection Projet", description: "Présentation de projets exclusifs adaptés à vos critères et objectifs d'investissement" },
+      { title: "Réservation Sécurisée", description: "Signature contrat de réservation avec conditions suspensives et échéancier de paiement" },
+      { title: "Suivi Construction", description: "Monitoring régulier du chantier avec rapports détaillés et photos d'avancement" },
+      { title: "Livraison & Gestion", description: "Réception du bien, mise en location et gestion locative personnalisée" }
+    ]
   }
 };
 
@@ -561,47 +585,6 @@ const ServiceDetailPage = () => {
                 <SectionTitle>Description du service</SectionTitle>
                 <Description>{service.description}</Description>
               </Section>
-
-              <Section
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 1, duration: 0.8 }}
-              >
-                <SectionTitle>Ce que nous proposons</SectionTitle>
-                <FeaturesList>
-                  {service.features.map((feature, index) => (
-                    <FeatureItem
-                      key={index}
-                      initial={{ x: -30, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 1.2 + index * 0.1, duration: 0.5 }}
-                    >
-                      <div className="icon">
-                        <FaCheck />
-                      </div>
-                      <div className="text">{feature}</div>
-                    </FeatureItem>
-                  ))}
-                </FeaturesList>
-              </Section>
-
-              <ProcessSection>
-                <SectionTitle>Notre processus</SectionTitle>
-                <ProcessGrid>
-                  {service.process.map((step, index) => (
-                    <ProcessStep
-                      key={index}
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 1.5 + index * 0.2, duration: 0.6 }}
-                    >
-                      <div className="number">{index + 1}</div>
-                      <div className="title">{step.title}</div>
-                      <div className="description">{step.description}</div>
-                    </ProcessStep>
-                  ))}
-                </ProcessGrid>
-              </ProcessSection>
             </MainContent>
 
             <Sidebar>
@@ -625,6 +608,49 @@ const ServiceDetailPage = () => {
               </ContactCard>
             </Sidebar>
           </ContentGrid>
+
+          {/* Sections pleine largeur */}
+          <Section
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            style={{ marginTop: '4rem' }}
+          >
+            <SectionTitle>Ce que nous proposons</SectionTitle>
+            <FeaturesList>
+              {service.features.map((feature, index) => (
+                <FeatureItem
+                  key={index}
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 1.2 + index * 0.1, duration: 0.5 }}
+                >
+                  <div className="icon">
+                    <FaCheck />
+                  </div>
+                  <div className="text">{feature}</div>
+                </FeatureItem>
+              ))}
+            </FeaturesList>
+          </Section>
+
+          <ProcessSection>
+            <SectionTitle>Notre processus</SectionTitle>
+            <ProcessGrid>
+              {service.process.map((step, index) => (
+                <ProcessStep
+                  key={index}
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 1.5 + index * 0.2, duration: 0.6 }}
+                >
+                  <div className="number">{index + 1}</div>
+                  <div className="title">{step.title}</div>
+                  <div className="description">{step.description}</div>
+                </ProcessStep>
+              ))}
+            </ProcessGrid>
+          </ProcessSection>
         </Container>
       </ContentSection>
     </PageContainer>

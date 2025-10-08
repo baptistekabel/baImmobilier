@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaHome, FaDoorOpen, FaBed, FaBath, FaMapMarkerAlt, FaPhone, FaEnvelope, FaChevronLeft, FaChevronRight, FaPlay, FaSwimmingPool, FaSeedling, FaCar, FaBuilding, FaSnowflake, FaFire, FaShieldAlt, FaArrowUp, FaWater, FaCheck } from 'react-icons/fa';
+import { FaArrowLeft, FaHome, FaDoorOpen, FaBed, FaBath, FaMapMarkerAlt, FaPhone, FaEnvelope, FaChevronLeft, FaChevronRight, FaPlay, FaSwimmingPool, FaSeedling, FaCar, FaBuilding, FaSnowflake, FaFire, FaShieldAlt, FaArrowUp, FaWater, FaCheck, FaFileContract, FaHammer, FaKey, FaHandsHelping, FaChevronDown, FaWhatsapp } from 'react-icons/fa';
 import SEO from '../components/SEO';
 import ApproximateLocationMap from '../components/ApproximateLocationMap';
 import { propertiesService } from '../services/PropertiesService';
 import { formatAddressForCard } from '../utils/addressUtils';
+import idrissImage from '../assets/images/idriss.jpeg';
 
 const Container = styled.section`
   padding: 6rem 0 4rem 0;
@@ -404,6 +405,204 @@ const ErrorContainer = styled.div`
   color: ${props => props.theme.colors.text.light};
 `;
 
+const PaymentPlanSection = styled.div`
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+`;
+
+const PaymentPlanHeader = styled.div`
+  background: ${props => props.theme.colors.lightGray};
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PaymentPlanTitle = styled.h3`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: ${props => props.theme.colors.primary};
+  margin: 0;
+`;
+
+const PaymentPlanContent = styled.div`
+  padding: 2rem;
+`;
+
+const PaymentStepsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+`;
+
+const PaymentStep = styled.div`
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    border-color: ${props => props.theme.colors.gold};
+    transform: translateY(-2px);
+  }
+`;
+
+const StepPercentage = styled.div`
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: ${props => props.theme.colors.primary};
+  margin-bottom: 0.5rem;
+`;
+
+const StepDescription = styled.div`
+  font-size: 0.85rem;
+  color: ${props => props.theme.colors.text.light};
+  margin-bottom: 1rem;
+  font-weight: 500;
+`;
+
+const StepIcon = styled.div`
+  width: 50px;
+  height: 50px;
+  background: ${props => props.theme.colors.primary};
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.2rem;
+`;
+
+const StepTitle = styled.div`
+  font-weight: 600;
+  color: ${props => props.theme.colors.text.dark};
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+`;
+
+const ChevronIcon = styled(FaChevronDown)`
+  transition: transform 0.3s ease;
+  transform: ${props => props.isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+  color: ${props => props.theme.colors.primary};
+`;
+
+const AgentProfileSection = styled.div`
+  background: white;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+`;
+
+const ProfileContainer = styled.div`
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+`;
+
+const ProfileImageContainer = styled.div`
+  position: relative;
+`;
+
+const ProfileImage = styled.img`
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+`;
+
+const ProfileContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const ProfileName = styled.h2`
+  font-size: 2rem;
+  font-weight: 700;
+  color: ${props => props.theme.colors.primary};
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+`;
+
+const ProfileTitle = styled.div`
+  font-size: 1.1rem;
+  color: ${props => props.theme.colors.text.light};
+  font-weight: 500;
+  margin-bottom: 1rem;
+`;
+
+const ProfileDescription = styled.div`
+  line-height: 1.8;
+  color: ${props => props.theme.colors.text.dark};
+  font-size: 1rem;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  strong {
+    color: ${props => props.theme.colors.primary};
+    font-weight: 600;
+  }
+`;
+
+const ContactButtonsContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+`;
+
+const ContactMethodButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border: 2px solid ${props => props.theme.colors.primary};
+  background: ${props => props.primary ? props.theme.colors.primary : 'white'};
+  color: ${props => props.primary ? 'white' : props.theme.colors.primary};
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+
+  &:hover {
+    background: ${props => props.primary ? props.theme.colors.secondary : props.theme.colors.primary};
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+`;
+
 const PropertyDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -506,6 +705,33 @@ const PropertyDetailPage = () => {
     { icon: <FaDoorOpen />, label: 'Pièces', value: property.rooms },
     { icon: <FaBed />, label: 'Chambres', value: property.bedrooms },
     { icon: <FaBath />, label: 'Salles de bain', value: property.bathrooms },
+  ];
+
+  const paymentSteps = [
+    {
+      percentage: '20%',
+      description: 'À la signature',
+      icon: <FaFileContract />,
+      title: 'Réservation'
+    },
+    {
+      percentage: '40%',
+      description: 'Pendant la construction',
+      icon: <FaHammer />,
+      title: 'Construction'
+    },
+    {
+      percentage: '40%',
+      description: 'À la remise des clés',
+      icon: <FaKey />,
+      title: 'Remise des clés'
+    },
+    {
+      percentage: '0%',
+      description: 'Après la remise des clés',
+      icon: <FaHandsHelping />,
+      title: 'Post handover'
+    }
   ];
 
   return (
@@ -696,6 +922,65 @@ const PropertyDetailPage = () => {
               </DetailsSection>
             </RightColumn>
           </MainContent>
+
+          <PaymentPlanSection>
+            <PaymentPlanHeader>
+              <PaymentPlanTitle>PLAN DE PAIEMENT</PaymentPlanTitle>
+            </PaymentPlanHeader>
+            <PaymentPlanContent>
+              <PaymentStepsGrid>
+                {paymentSteps.map((step, index) => (
+                  <PaymentStep key={index}>
+                    <StepPercentage>{step.percentage}</StepPercentage>
+                    <StepDescription>{step.description}</StepDescription>
+                    <StepIcon>{step.icon}</StepIcon>
+                    <StepTitle>{step.title}</StepTitle>
+                  </PaymentStep>
+                ))}
+              </PaymentStepsGrid>
+            </PaymentPlanContent>
+          </PaymentPlanSection>
+
+          <AgentProfileSection>
+            <ProfileContainer>
+              <ProfileImageContainer>
+                <ProfileImage src={idrissImage} alt="Idriss BA" />
+              </ProfileImageContainer>
+              <ProfileContent>
+                <ProfileName>IDRISS BA</ProfileName>
+                <ProfileTitle>CEO de BA Immobilier | Expert Immobilier International</ProfileTitle>
+                <ProfileDescription>
+                  <p>
+                    Fondateur de BA Immobilier, <strong>agence immobilière premium</strong> spécialisée dans l'accompagnement
+                    de la diaspora africaine, je me consacre entièrement à la réalisation de vos projets immobiliers.
+                    Notre mission est de vous offrir une expertise de haut niveau et un service personnalisé pour concrétiser
+                    vos rêves d'investissement en Afrique et aux Antilles.
+                  </p>
+                  <p>
+                    Fort de plusieurs années d'expérience dans l'immobilier international, je mets à votre disposition
+                    mon réseau de partenaires locaux et ma connaissance approfondie des marchés pour vous garantir
+                    des investissements sûrs et rentables, que ce soit pour votre résidence principale ou
+                    un patrimoine locatif.
+                  </p>
+                </ProfileDescription>
+                <ContactButtonsContainer>
+                  <ContactMethodButton
+                    primary
+                    onClick={() => window.open('tel:+33123456789', '_self')}
+                  >
+                    <FaPhone />
+                    Téléphone
+                  </ContactMethodButton>
+                  <ContactMethodButton
+                    onClick={() => window.open('https://wa.me/33123456789', '_blank')}
+                  >
+                    <FaWhatsapp />
+                    WhatsApp
+                  </ContactMethodButton>
+                </ContactButtonsContainer>
+              </ProfileContent>
+            </ProfileContainer>
+          </AgentProfileSection>
         </ContentWrapper>
       </Container>
     </>

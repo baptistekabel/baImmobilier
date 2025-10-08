@@ -5,6 +5,7 @@ import HeroSection from '../components/HeroSection';
 import FeaturedPropertiesSection from '../components/FeaturedPropertiesSection';
 import ServicesSection from '../components/ServicesSection';
 import WhyChooseUsSection from '../components/WhyChooseUsSection';
+import TestimonialsSection from '../components/TestimonialsSection';
 import InvestmentGuideSection from '../components/InvestmentGuideSection';
 import FAQSection from '../components/FAQSection';
 
@@ -24,6 +25,7 @@ const HomePage = () => {
       <ServicesSection />
       <InvestmentGuideSection />
       <WhyChooseUsSection />
+      <TestimonialsSection />
       <FAQSection />
     </>
   );

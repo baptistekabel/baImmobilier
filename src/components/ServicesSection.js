@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { FaHome, FaKey, FaBuilding, FaTools, FaHardHat, FaArrowRight, FaMapMarkedAlt, FaSearch } from 'react-icons/fa';
+import { FaHome, FaKey, FaBuilding, FaTools, FaHardHat, FaArrowRight, FaMapMarkedAlt, FaSearch, FaDraftingCompass } from 'react-icons/fa';
 import { motion, useInView } from 'framer-motion';
 import immobilier1 from '../assets/images/immobilier1.jpeg';
 import immobilier2 from '../assets/images/immobilier2.jpg';
@@ -392,6 +392,13 @@ const ServicesSection = () => {
       descKey: 'services.propertyHunting.desc',
       slug: 'chasseur-de-biens',
       image: chasseurBien
+    },
+    {
+      icon: <FaDraftingCompass />,
+      titleKey: 'services.projectOnPlan.title',
+      descKey: 'services.projectOnPlan.desc',
+      slug: 'projet-sur-plan',
+      image: immobilier3
     }
   ];
 

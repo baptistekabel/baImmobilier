@@ -144,7 +144,6 @@ const PropertyFAQ = ({ propertyType, location }) => {
           <p>Plusieurs options de financement sont possibles :</p>
           <ul>
             <li><strong>Banques locales :</strong> Financement direct ${isAfrica ? 'en Afrique' : 'aux Antilles'} avec notre accompagnement</li>
-            <li><strong>Banques françaises :</strong> Crédit immobilier international pour les résidents français</li>
             <li><strong>Organismes spécialisés :</strong> Partenaires financiers dédiés à l'investissement ${isAfrica ? 'africain' : 'caribéen'}</li>
             <li><strong>Auto-financement :</strong> Solutions d'étalement de paiement</li>
           </ul>

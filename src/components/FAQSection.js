@@ -205,7 +205,6 @@ const FAQSection = () => {
       answer: `
         <p>Plusieurs solutions de financement s'offrent à vous :</p>
         <ul>
-          <li><strong>Banques françaises :</strong> Crédit immobilier international pour les résidents français</li>
           <li><strong>Banques locales :</strong> Financement direct en Afrique et aux Antilles</li>
           <li><strong>Organismes spécialisés :</strong> Partenaires financiers dédiés à l'investissement diaspora</li>
           <li><strong>Solutions hybrides :</strong> Combinaison de financements pour optimiser votre projet</li>

@@ -38,6 +38,8 @@ const resources = {
       "services.consulting.desc": "Accompagnement personnalisé dans vos projets immobiliers",
       "services.propertyHunting.title": "Chasseur de biens",
       "services.propertyHunting.desc": "Service personnalisé de recherche de biens immobiliers selon vos critères spécifiques.",
+      "services.projectOnPlan.title": "Projet sur Plan",
+      "services.projectOnPlan.desc": "Investissez dans des projets immobiliers en construction avec plans détaillés et suivi personnalisé.",
 
       // Why Choose Us
       "why.title": "Pourquoi nous choisir ?",
@@ -171,6 +173,8 @@ const resources = {
       "services.consulting.desc": "Jàppale ci kër ngir bokk ak yow",
       "services.propertyHunting.title": "Wutalkat kër",
       "services.propertyHunting.desc": "Liggéey bu njariñ ngir gis kër bu baax ci sa bëgg-bëgg.",
+      "services.projectOnPlan.title": "Projet ci plan",
+      "services.projectOnPlan.desc": "Lekk ci projet kër yu daj jëf ak plan yu baax ak suivi bu njariñ.",
 
       // Why Choose Us
       "why.title": "Lu tax nga tànn nu?",
