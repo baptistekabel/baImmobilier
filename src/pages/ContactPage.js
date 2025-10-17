@@ -4,6 +4,8 @@ import SEO from '../components/SEO';
 import { getSeoConfig } from '../utils/seoConfig';
 import styled from 'styled-components';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaWhatsapp, FaSkype } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
+import { emailJSConfig } from '../config/emailjs';
 
 const ContactContainer = styled.section`
   padding: 8rem 0 4rem;
@@ -373,19 +375,47 @@ const ContactPage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        subject: '',
-        service: '',
-        message: ''
-      });
+    try {
+      // Préparer les données pour EmailJS
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        to_email: 'idrissba@outlook.com',
+        subject: formData.subject || `Nouvelle demande de contact - ${formData.service || 'Général'}`,
+        message: formData.message,
+        phone: formData.phone || 'Non renseigné',
+        service: formData.service || 'Non spécifié',
+        // Ajout de la date
+        date: new Date().toLocaleDateString('fr-FR')
+      };
+
+      // Envoyer l'email via EmailJS
+      const result = await emailjs.send(
+        emailJSConfig.serviceId,
+        emailJSConfig.templateId,
+        templateParams,
+        emailJSConfig.publicKey
+      );
+
+      if (result.status === 200) {
+        alert('✅ Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+        // Réinitialiser le formulaire
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          subject: '',
+          service: '',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi de l\'email:', error);
+      alert('❌ Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer ou nous contacter directement à idrissba@outlook.com');
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (

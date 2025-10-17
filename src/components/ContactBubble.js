@@ -241,7 +241,7 @@ const ContactBubble = () => {
   };
 
   const handleEmail = () => {
-    window.location.href = 'mailto:contact@ba-immobilier.com';
+    window.location.href = 'mailto:idrissba@outlook.com';
   };
 
   if (!isVisible) return null;

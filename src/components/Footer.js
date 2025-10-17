@@ -198,14 +198,14 @@ const Footer = () => {
             </ContactInfo>
             <ContactInfo>
               <ContactIcon><FaEnvelope /></ContactIcon>
-              <span>contact@ba-immobilier.fr</span>
+              <span>idrissba@outlook.com</span>
             </ContactInfo>
           </FooterSection>
 
           <FooterSection>
             <FooterTitle>{t('footer.social')}</FooterTitle>
             <SocialLinks>
-              <SocialLink href="#" target="_blank" rel="noopener noreferrer">
+              <SocialLink href="https://www.instagram.com/idrissba_realestate?igsh=MWlxeTg0Y3Ywbnp0dQ==" target="_blank" rel="noopener noreferrer">
                 <FaInstagram />
               </SocialLink>
             </SocialLinks>

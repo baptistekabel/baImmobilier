@@ -57,18 +57,6 @@ const LogoText = styled.div`
   line-height: 1.2;
 `;
 
-const LogoSubtitle = styled.span`
-  font-size: 0.7rem;
-  font-weight: 400;
-  color: ${props => props.theme.colors.gold};
-  text-transform: none;
-  letter-spacing: 0.5px;
-  margin-top: -2px;
-
-  @media (max-width: ${props => props.theme.breakpoints.mobile}) {
-    font-size: 0.6rem;
-  }
-`;
 
 const LogoImage = styled.img`
   width: 50px;
@@ -250,7 +238,6 @@ const Header = () => {
           <LogoImage src={logo} alt="BA Immobilier" />
           <LogoText>
             BA Immobilier
-            <LogoSubtitle>Conciergerie Premium</LogoSubtitle>
           </LogoText>
         </Logo>
 

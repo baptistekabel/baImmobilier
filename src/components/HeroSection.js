@@ -288,11 +288,18 @@ const HeroTitle = styled(motion.h1)`
   padding: 0 1rem;
 
   /* Gestion intelligente du texte - éviter la coupure des mots */
-  word-break: keep-all;
+  word-break: normal;
   overflow-wrap: normal;
+  word-wrap: normal;
   hyphens: none;
   white-space: pre-line;
   line-height: 1.3;
+
+  /* Propriétés supplémentaires pour empêcher la coupure */
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  text-rendering: optimizeLegibility;
 
   /* Couleur solide bien visible */
   color: #FFFFFF;
@@ -367,6 +374,17 @@ const HeroSubtitle = styled(motion.p)`
   z-index: 10;
   max-width: 100%;
   text-align: center;
+
+  /* Éviter la coupure des mots */
+  word-break: normal;
+  overflow-wrap: normal;
+  word-wrap: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  text-rendering: optimizeLegibility;
+  white-space: pre-line;
 
   @media (max-width: ${props => props.theme.breakpoints.tablet}) {
     font-size: 1.3rem;
@@ -737,10 +755,14 @@ const HeroSection = () => {
       formattedText += '.';
     }
 
-    // Ajouter les sauts de ligne de manière plus intelligente
-    formattedText = formattedText
-      .replace(/(de confiance)/i, 'de confiance\n')
-      .replace(/(entre l)/i, 'entre l');
+    // Ajouter les sauts de ligne et espaces insécables pour éviter la coupure des mots
+    if (formattedText.includes('partenaire immobilier')) {
+      const nbsp = String.fromCharCode(160); // Espace insécable
+      // Structurer le texte pour éviter les coupures problématiques
+      formattedText = formattedText
+        .replace(/Votre partenaire immobilier de confiance/i, `Votre${nbsp}partenaire${nbsp}immobilier${nbsp}de${nbsp}confiance`)
+        .replace(/entre l'Afrique et les Antilles/i, `\nentre${nbsp}l'Afrique${nbsp}et${nbsp}les${nbsp}Antilles`);
+    }
 
     return formattedText.split('').map((char, index) => (
       <motion.span
@@ -764,7 +786,7 @@ const HeroSection = () => {
         }}
         className={className}
       >
-        {char === ' ' ? '\u00A0' : char === '\n' ? '' : char}
+        {char === ' ' ? String.fromCharCode(160) : char === '\n' ? '' : char}
       </motion.span>
     ));
   });
@@ -774,9 +796,11 @@ const HeroSection = () => {
     // Forcer un saut de ligne optimal pour éviter la coupure des mots
     let formattedText = text;
 
-    // Pour le titre français, créer deux lignes équilibrées avec espaces insécables
+    // Pour le titre français, créer des lignes équilibrées avec espaces insécables
     if (text.includes('Unir nos histoires')) {
-      formattedText = 'Unir nos histoires,\nconstruire notre\u00A0avenir.';
+      const nbsp = String.fromCharCode(160); // Espace insécable
+      // Remplacer TOUS les espaces par des espaces insécables sauf aux endroits de saut de ligne voulus
+      formattedText = `Unir${nbsp}nos${nbsp}histoires,\nconstruire${nbsp}notre${nbsp}avenir.`;
     }
 
     // Ajouter un point à la fin si nécessaire
@@ -807,7 +831,7 @@ const HeroSection = () => {
           }
         } : {}}
       >
-        {char === ' ' ? '\u00A0' : char === '\n' ? '' : char}
+        {char === ' ' ? String.fromCharCode(160) : char === '\n' ? '' : char}
       </motion.span>
     ));
   });
