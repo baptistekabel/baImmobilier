@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaTimes } from 'react-icons/fa';
 import idrissPhoto from '../assets/images/idriss.jpeg';
+import { siteConfig } from '../config/emailjs';
 
 const bounce = keyframes`
   0%, 20%, 50%, 80%, 100% {
@@ -237,11 +238,11 @@ const ContactBubble = () => {
   }, []);
 
   const handleCall = () => {
-    window.location.href = 'tel:0662368225';
+    window.location.href = `tel:${siteConfig.contactPhone}`;
   };
 
   const handleEmail = () => {
-    window.location.href = 'mailto:idrissba@outlook.com';
+    window.location.href = `mailto:${siteConfig.contactEmail}`;
   };
 
   if (!isVisible) return null;

@@ -10,7 +10,7 @@
 ### 2. Créer un service email
 1. Dans le dashboard EmailJS, allez dans "Services"
 2. Cliquez sur "Add Service"
-3. Choisissez "Outlook" (puisque vous utilisez idrissba@outlook.com)
+3. Choisissez "Outlook" (puisque vous utilisez contact@baimmobilier.com)
 4. Suivez les instructions pour connecter votre compte Outlook
 5. Notez le **Service ID** généré (ex: service_xxxxxxx)
 
@@ -59,7 +59,7 @@ export const emailJSConfig = {
 1. Redémarrez votre application (`npm start`)
 2. Allez sur la page de contact
 3. Remplissez et envoyez le formulaire
-4. Vérifiez que vous recevez l'email sur idrissba@outlook.com
+4. Vérifiez que vous recevez l'email sur contact@baimmobilier.com
 
 ## Limites du plan gratuit
 - 200 emails/mois

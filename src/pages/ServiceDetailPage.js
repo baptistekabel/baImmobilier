@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FaArrowLeft, FaCheck, FaPhone, FaEnvelope } from 'react-icons/fa';
 import SEO from '../components/SEO';
+import { siteConfig } from '../config/emailjs';
 import immobilier1 from '../assets/images/immobilier1.jpeg';
 import immobilier2 from '../assets/images/immobilier2.jpg';
 import immobilier3 from '../assets/images/immobilier3.jpg';
@@ -514,11 +515,11 @@ const ServiceDetailPage = () => {
   }
 
   const handleCall = () => {
-    window.location.href = 'tel:0662368225';
+    window.location.href = `tel:${siteConfig.contactPhone}`;
   };
 
   const handleEmail = () => {
-    window.location.href = 'mailto:idrissba@outlook.com';
+    window.location.href = `mailto:${siteConfig.contactEmail}`;
   };
 
   return (

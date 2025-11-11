@@ -5,7 +5,7 @@ import { getSeoConfig } from '../utils/seoConfig';
 import styled from 'styled-components';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaWhatsapp, FaSkype } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
-import { emailJSConfig } from '../config/emailjs';
+import { emailJSConfig, siteConfig } from '../config/emailjs';
 
 const ContactContainer = styled.section`
   padding: 8rem 0 4rem;
@@ -380,7 +380,7 @@ const ContactPage = () => {
       const templateParams = {
         from_name: `${formData.firstName} ${formData.lastName}`,
         from_email: formData.email,
-        to_email: 'idrissba@outlook.com',
+        to_email: siteConfig.contactEmail,
         subject: formData.subject || `Nouvelle demande de contact - ${formData.service || 'Général'}`,
         message: formData.message,
         phone: formData.phone || 'Non renseigné',
@@ -412,7 +412,7 @@ const ContactPage = () => {
       }
     } catch (error) {
       console.error('Erreur lors de l\'envoi de l\'email:', error);
-      alert('❌ Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer ou nous contacter directement à idrissba@outlook.com');
+      alert(`❌ Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer ou nous contacter directement à ${siteConfig.contactEmail}`);
     } finally {
       setIsSubmitting(false);
     }

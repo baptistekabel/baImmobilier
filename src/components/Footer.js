@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaInstagram } from 'react-icons/fa';
 import logo from '../assets/images/logoBaImmobilier.jpeg';
+import { siteConfig } from '../config/emailjs';
 
 const FooterContainer = styled.footer`
   background-color: ${props => props.theme.colors.primary};
@@ -194,11 +195,11 @@ const Footer = () => {
             <FooterTitle>{t('footer.contact.title')}</FooterTitle>
             <ContactInfo>
               <ContactIcon><FaPhone /></ContactIcon>
-              <span>06 62 36 82 25</span>
+              <span>{siteConfig.contactPhone.replace('+33', '0').replace(/(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1 $2 $3 $4 $5')}</span>
             </ContactInfo>
             <ContactInfo>
               <ContactIcon><FaEnvelope /></ContactIcon>
-              <span>idrissba@outlook.com</span>
+              <span>{siteConfig.contactEmail}</span>
             </ContactInfo>
           </FooterSection>
 

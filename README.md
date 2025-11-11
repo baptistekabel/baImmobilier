@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+# 🏡 BA Immobilier - Site Web
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Site web officiel de BA Immobilier, votre partenaire immobilier de confiance entre l'Afrique et les Antilles.
 
-## Available Scripts
+## 🚀 Déploiement rapide sur Render
 
-In the project directory, you can run:
+[![Déployer sur Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com)
 
-### `npm start`
+1. **Connectez votre repository** à Render
+2. **Configurez les variables d'environnement** (voir section ci-dessous)
+3. **Déployez** automatiquement !
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📋 Configuration requise
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Variables d'environnement obligatoires
 
-### `npm test`
+```bash
+# EmailJS (formulaire de contact)
+REACT_APP_EMAILJS_SERVICE_ID=service_xxxxxxx
+REACT_APP_EMAILJS_TEMPLATE_ID=template_xxxxxxx
+REACT_APP_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxxxxxxxx
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Informations de contact
+REACT_APP_CONTACT_EMAIL=contact@baimmobilier.com
+REACT_APP_CONTACT_PHONE=+33662368225
+```
 
-### `npm run build`
+### Variables optionnelles
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Google Maps (cartes)
+REACT_APP_GOOGLE_MAPS_API_KEY=votre_cle_maps
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# URL du site (auto-détectée si non définie)
+REACT_APP_SITE_URL=https://votre-site.onrender.com
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠️ Développement local
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Démarrage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Ouvre [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-## Learn More
+### Construction
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Vérification avant déploiement
 
-### Code Splitting
+```bash
+npm run pre-deploy-check
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📚 Documentation
 
-### Analyzing the Bundle Size
+- **[Guide de déploiement Render](./RENDER_DEPLOYMENT.md)** - Guide complet pour le déploiement
+- **[Configuration EmailJS](./EMAILJS_SETUP.md)** - Configuration du formulaire de contact
+- **[Configuration Google Maps](./VERCEL_GOOGLE_MAPS_CONFIG.md)** - Configuration des cartes (compatible Render)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🎯 Structure du projet
 
-### Making a Progressive Web App
+```
+ba-immobilier/
+├── public/
+│   ├── _redirects          # Redirections pour SPA
+│   └── index.html
+├── src/
+│   ├── components/         # Composants React
+│   ├── pages/             # Pages du site
+│   ├── config/            # Configuration (EmailJS, etc.)
+│   └── utils/             # Utilitaires
+├── scripts/
+│   └── pre-deploy-check.js # Script de vérification
+├── render.yaml            # Configuration Render
+├── .env.example          # Variables d'environnement exemple
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🚀 Fonctionnalités
 
-### Advanced Configuration
+- ✅ Site responsive (mobile, tablet, desktop)
+- ✅ Formulaire de contact avec EmailJS
+- ✅ SEO optimisé avec meta tags dynamiques
+- ✅ Support multilingue (FR/EN)
+- ✅ Animations fluides avec Framer Motion
+- ✅ Cartes interactives Google Maps
+- ✅ Optimisé pour les performances web
+- ✅ PWA ready
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🔧 Technologies utilisées
 
-### Deployment
+- **React** 18 + **React Router** 7
+- **Styled Components** pour le styling
+- **Framer Motion** pour les animations
+- **EmailJS** pour les formulaires
+- **React i18next** pour l'internationalisation
+- **Google Maps API** pour la géolocalisation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 📞 Support
 
-### `npm run build` fails to minify
+Pour toute question technique :
+- Email: contact@baimmobilier.com
+- Téléphone: +33 6 62 36 82 25
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+**Développé avec ❤️ pour BA Immobilier**
