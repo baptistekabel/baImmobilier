@@ -357,7 +357,7 @@ const serviceData = {
     icon: "🏢",
     image: immobilier3,
     color: "#F59E0B",
-    description: "Vendre un bien immobilier ne se résume pas à trouver un acheteur : c'est orchestrer une stratégie complète pour révéler et maximiser la valeur de votre patrimoine. Notre approche premium combine expertise d'évaluation, marketing digital de pointe, et réseau d'acquéreurs qualifiés à l'international. Que votre bien soit situé dans les quartiers prisés de Dakar, les hauteurs de Fort-de-France, ou les zones en développement d'Abidjan, nous déployons une stratégie sur-mesure pour attirer les meilleurs acquéreurs et négocier dans les conditions optimales.",
+    description: "Vendre un bien immobilier ne se résume pas à trouver un acheteur : c'est orchestrer une stratégie complète pour révéler et maximiser la valeur de votre patrimoine. Notre approche premium combine expertise d'évaluation, marketing digital de pointe, et réseau d'acquéreurs qualifiés à l'international. Que votre bien soit situé dans les quartiers prisés de Dakar, les hauteurs de Fort-de-France, ou les zones en développement de Saint-Louis, nous déployons une stratégie sur-mesure pour attirer les meilleurs acquéreurs et négocier dans les conditions optimales.",
     features: [
       "Évaluation multi-critères par expert certifié avec benchmark marché international",
       "Home staging professionnel et mise en scène valorisante de votre bien",
@@ -405,7 +405,7 @@ const serviceData = {
     icon: "👷",
     image: immobilier1,
     color: "#8B5CF6",
-    description: "Faire construire sa maison représente l'aboutissement de vos aspirations résidentielles. Notre service de construction haut de gamme transforme votre vision en édifice d'exception, en alliant innovation architecturale, techniques de construction avancées et respect des traditions locales. Que vous envisagiez une villa contemporaine face à l'océan en Martinique, une résidence familiale moderne dans la banlieue chic de Dakar, ou un projet mixte résidentiel-commercial en Côte d'Ivoire, nous orchestrons chaque étape avec l'exigence du sur-mesure et l'expertise technique d'un maître d'œuvre expérimenté.",
+    description: "Faire construire sa maison représente l'aboutissement de vos aspirations résidentielles. Notre service de construction haut de gamme transforme votre vision en édifice d'exception, en alliant innovation architecturale, techniques de construction avancées et respect des traditions locales. Que vous envisagiez une villa contemporaine face à l'océan en Martinique, une résidence familiale moderne dans la banlieue chic de Dakar, ou un projet mixte résidentiel-commercial en Guadeloupe, nous orchestrons chaque étape avec l'exigence du sur-mesure et l'expertise technique d'un maître d'œuvre expérimenté.",
     features: [
       "Recherche et négociation foncière exclusive avec analyse géologique approfondie",
       "Conception architecturale personnalisée intégrant normes climatiques et culturelles",

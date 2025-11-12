@@ -187,15 +187,15 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       id: 1,
-      content: "Grâce à BA Immobilier, j'ai pu acquérir ma villa de rêve à Abidjan. Leur accompagnement depuis Paris a été exceptionnel, de la recherche au financement. Une équipe vraiment professionnelle qui comprend les enjeux de la diaspora.",
-      author: "Marie-Claire Kouassi",
+      content: "Grâce à BA Immobilier, j'ai pu acquérir ma villa de rêve à Dakar. Leur accompagnement depuis Paris a été exceptionnel, de la recherche au financement. Une équipe vraiment professionnelle qui comprend les enjeux de la diaspora.",
+      author: "Marie-Claire Diop",
       details: "Cadre bancaire",
       initial: "M",
       rating: 5
     },
     {
       id: 2,
-      content: "L'investissement locatif en Côte d'Ivoire semblait compliqué depuis la France, mais BA Immobilier a rendu tout simple. Rendement de 8% la première année, je recommande vivement leurs services de conciergerie premium.",
+      content: "L'investissement locatif au Sénégal semblait compliqué depuis la France, mais BA Immobilier a rendu tout simple. Rendement de 8% la première année, je recommande vivement leurs services de conciergerie premium.",
       author: "Pierre Dubois",
       details: "Entrepreneur",
       initial: "P",
@@ -203,7 +203,7 @@ const TestimonialsSection = () => {
     },
     {
       id: 3,
-      content: "Après 15 ans en Martinique, je voulais investir au pays. BA Immobilier m'a trouvé le terrain parfait à Yamoussoukro et s'est occupé de tout. Aujourd'hui ma résidence secondaire prend forme !",
+      content: "Après 15 ans en Martinique, je voulais investir au pays. BA Immobilier m'a trouvé le terrain parfait à Thiès et s'est occupé de tout. Aujourd'hui ma résidence secondaire prend forme !",
       author: "Fatou Diabaté",
       details: "Infirmière",
       initial: "F",
@@ -211,7 +211,7 @@ const TestimonialsSection = () => {
     },
     {
       id: 4,
-      content: "La transparence et le professionnalisme de cette équipe m'ont convaincu. Ils ont géré mon projet immobilier à Bouaké de A à Z. Communication constante, délais respectés, je suis ravi de mon investissement.",
+      content: "La transparence et le professionnalisme de cette équipe m'ont convaincu. Ils ont géré mon projet immobilier à Saint-Louis de A à Z. Communication constante, délais respectés, je suis ravi de mon investissement.",
       author: "Sophie Martin",
       details: "Ingénieur",
       initial: "S",
@@ -219,7 +219,7 @@ const TestimonialsSection = () => {
     },
     {
       id: 5,
-      content: "En tant que retraitée, je cherchais un investissement sûr. BA Immobilier m'a proposé un appartement clé en main à Abidjan avec gestion locative incluse. Tranquillité d'esprit totale !",
+      content: "En tant que retraitée, je cherchais un investissement sûr. BA Immobilier m'a proposé un appartement clé en main à Fort-de-France avec gestion locative incluse. Tranquillité d'esprit totale !",
       author: "Awa Koné",
       details: "Retraitée",
       initial: "A",
@@ -242,7 +242,7 @@ const TestimonialsSection = () => {
           <SectionTitle>Ils nous font confiance</SectionTitle>
           <SectionSubtitle>
             Découvrez les témoignages de nos clients qui ont concrétisé leurs projets immobiliers
-            en Afrique et aux Antilles grâce à notre accompagnement personnalisé.
+            au Sénégal et aux Antilles grâce à notre accompagnement personnalisé.
           </SectionSubtitle>
         </SectionHeader>
 
