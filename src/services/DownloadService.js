@@ -207,8 +207,8 @@ class DownloadService {
   downloadPDF() {
     try {
       const link = document.createElement('a');
-      link.href = '/test.pdf';
-      link.download = 'Guide-Investissement-BA-Immobilier.pdf';
+      link.href = '/Investir-au-Senegal-en-2025.pdf';
+      link.download = 'Investir-au-Senegal-en-2025.pdf';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
